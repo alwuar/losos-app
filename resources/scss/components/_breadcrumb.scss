@@ -1,0 +1,26 @@
+// Ruta de navegación (<x-ui.breadcrumb>)
+.breadcrumb-bar {
+    padding: 18px 0;
+    border-bottom: 1px solid #eef0f1;
+    background-color: $losos-surface;
+
+    .breadcrumb {
+        --bs-breadcrumb-divider: '›';
+        --bs-breadcrumb-divider-color: #{$losos-gray};
+        --bs-breadcrumb-item-active-color: #{$losos-navy};
+        font-size: .8125rem;
+        line-height: 18px;
+    }
+
+    a {
+        color: $losos-gray;
+
+        &:hover {
+            color: $losos-orange;
+        }
+    }
+
+    .active {
+        font-weight: $font-weight-semibold;
+    }
+}

@@ -1,0 +1,54 @@
+// Tabla de especificaciones (<x-products.spec-table>)
+.spec-table {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr;
+
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &__group {
+        overflow: hidden;
+        @include card-surface;
+    }
+
+    &__title {
+        margin: 0;
+        padding: 14px 24px;
+        background-color: $losos-navy;
+        color: $white;
+        font-size: 1rem;
+        font-weight: $font-weight-bold;
+        line-height: 22px;
+    }
+
+    &__rows {
+        margin: 0;
+    }
+
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 11px 24px;
+        font-size: .875rem;
+        line-height: 19px;
+
+        &:nth-child(even) {
+            background-color: $losos-surface;
+        }
+
+        dt {
+            font-weight: $font-weight-normal;
+            color: $losos-ink;
+        }
+
+        dd {
+            margin: 0;
+            font-weight: $font-weight-bold;
+            color: $losos-navy;
+            text-align: right;
+        }
+    }
+}

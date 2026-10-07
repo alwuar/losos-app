@@ -1,0 +1,30 @@
+// Datos destacados del producto (<x-products.highlights>)
+.product-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 24px;
+    margin: 0;
+
+    &__item {
+        display: flex;
+        flex-direction: column-reverse; // valor arriba, etiqueta abajo
+        padding: 14px 0;
+        border-top: 1px solid #e6e8ea;
+    }
+
+    &__value {
+        margin: 0;
+        font-size: 1.125rem;
+        font-weight: $font-weight-bold;
+        line-height: 24px;
+        color: $losos-navy;
+    }
+
+    &__label {
+        margin-top: 2px;
+        font-size: .75rem;
+        font-weight: $font-weight-normal;
+        line-height: 16px;
+        color: $losos-gray;
+    }
+}

@@ -1,0 +1,117 @@
+// =============================================================================
+// Detalle de producto
+// =============================================================================
+
+.product-detail {
+    padding: 56px 0 96px;
+
+    &__grid {
+        display: grid;
+        gap: 2.5rem;
+        grid-template-columns: 1fr;
+
+        @include media-breakpoint-up(lg) {
+            grid-template-columns: minmax(0, 580fr) minmax(0, 500fr);
+            gap: 64px;
+            align-items: start;
+        }
+    }
+
+    &__brand {
+        margin: 18px 0 0;
+        font-size: .875rem;
+        font-weight: $font-weight-semibold;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: $losos-gray;
+    }
+
+    &__name {
+        margin: 4px 0 0;
+        font-size: 2.5rem;   // 40px
+        font-weight: $font-weight-bold;
+        line-height: 1.15;
+        color: $losos-navy;
+    }
+
+    &__tagline {
+        margin: 8px 0 0;
+        font-size: 1.125rem;
+        font-weight: $font-weight-semibold;
+        line-height: 24px;
+        color: $losos-orange;
+    }
+
+    &__description {
+        margin: 16px 0 28px;
+        font-size: .875rem;
+        line-height: 21px;
+        color: $losos-ink;
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+    }
+
+    &__brochure {
+        margin-top: 20px;
+    }
+
+    @include media-breakpoint-down(lg) {
+        padding: 2rem 0 4rem;
+
+        &__name {
+            font-size: 2rem;
+        }
+    }
+}
+
+.product-features {
+    padding: 0 0 104px;
+
+    .section-heading {
+        margin-bottom: 64px;
+    }
+
+    .feature-row {
+        @include media-breakpoint-up(xl) {
+            padding-left: 41px;
+        }
+    }
+}
+
+.product-specs {
+    padding: 88px 0;
+
+    .section-heading {
+        margin-bottom: 40px;
+    }
+
+    &__note {
+        margin: 24px 0 0;
+        font-size: .75rem;
+        color: $losos-gray;
+    }
+}
+
+.product-related {
+    padding: 96px 0 120px;
+
+    .section-heading {
+        margin-bottom: 48px;
+    }
+}
+
+.cta-banner__actions {
+    margin-top: 24px;
+}
+
+@include media-breakpoint-down(lg) {
+    .product-features { padding-bottom: 4rem; }
+    .product-features .section-heading { margin-bottom: 2.5rem; }
+    .product-specs { padding: 4rem 0; }
+    .product-related { padding: 4rem 0; }
+}

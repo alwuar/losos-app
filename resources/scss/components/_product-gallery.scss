@@ -1,0 +1,49 @@
+// Galería del producto (<x-products.gallery>)
+.product-gallery {
+    &__main {
+        --media-ratio: 4 / 3;
+        border-radius: $border-radius-lg;
+        background-color: #f3f3f3;
+    }
+
+    &__thumbs {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__thumb {
+        display: block;
+        width: 100%;
+        padding: 0;
+        border: 2px solid transparent;
+        border-radius: $border-radius;
+        background: none;
+        overflow: hidden;
+        cursor: pointer;
+        transition: border-color .2s ease, opacity .2s ease;
+        opacity: .7;
+
+        .media {
+            --media-ratio: 4 / 3;
+            background-color: #f3f3f3;
+        }
+
+        &:hover,
+        &.is-active {
+            opacity: 1;
+        }
+
+        &.is-active {
+            border-color: $losos-orange;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $losos-navy;
+            outline-offset: 2px;
+        }
+    }
+}

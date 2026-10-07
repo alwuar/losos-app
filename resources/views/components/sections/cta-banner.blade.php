@@ -3,6 +3,7 @@
     'title',
     'align' => 'start',
     'compact' => false,
+    'actions' => null,
 ])
 
 <section {{ $attributes->class(['cta-banner', 'cta-banner--center' => $align === 'center', 'cta-banner--compact' => $compact]) }}>
@@ -11,6 +12,10 @@
 
         @if ($slot->isNotEmpty())
             <p class="cta-banner__text">{{ $slot }}</p>
+        @endif
+
+        @if ($actions)
+            <div class="cta-banner__actions">{{ $actions }}</div>
         @endif
     </div>
 </section>

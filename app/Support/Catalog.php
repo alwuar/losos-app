@@ -34,15 +34,54 @@ class Catalog
         return collect(config('catalog.products'))
             ->when($category, fn (Collection $items) => $items->where('category', $category))
             ->when($type, fn (Collection $items) => $items->where('type', $type))
-            ->map(function (array $product) {
-                $category = $this->category($product['category']);
-
-                return [
-                    ...$product,
-                    'type_label' => Arr::get($category, "types.{$product['type']}", $product['type']),
-                ];
-            })
+            ->map(fn (array $product) => $this->hydrate($product))
             ->values();
+    }
+
+    /**
+     * Un producto por su slug, dentro de una categoría.
+     */
+    public function product(string $category, string $slug): ?array
+    {
+        $product = collect(config('catalog.products'))
+            ->first(fn (array $item) => $item['slug'] === $slug && $item['category'] === $category);
+
+        return $product ? $this->hydrate($product) : null;
+    }
+
+    /**
+     * Productos de la misma categoría (primero los del mismo tipo), sin el actual.
+     */
+    public function related(array $product, int $limit = 3): Collection
+    {
+        return $this->products($product['category'])
+            ->reject(fn (array $item) => $item['slug'] === $product['slug'])
+            ->sortByDesc(fn (array $item) => $item['type'] === $product['type'])
+            ->take($limit)
+            ->values();
+    }
+
+    /**
+     * Completa un producto con valores por defecto y datos derivados.
+     */
+    protected function hydrate(array $product): array
+    {
+        $category = $this->category($product['category']);
+
+        return [
+            'tagline' => null,
+            'description' => null,
+            'gallery' => [],
+            'specs' => [],
+            'highlights' => [],
+            'features' => [],
+            'spec_groups' => [],
+            'brochure' => null,
+            ...$product,
+            'category_name' => $category['name'] ?? $product['category'],
+            'type_label' => Arr::get($category, "types.{$product['type']}", $product['type']),
+            'url' => route('products.show', [$product['category'], $product['slug']]),
+        ];
     }
 
     /**

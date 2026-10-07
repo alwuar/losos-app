@@ -12,6 +12,7 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/quienes-somos', AboutController::class)->name('about');
 
 Route::get('/productos/{category?}', [ProductController::class, 'index'])->name('products.index');
+Route::get('/productos/{category}/{product}', [ProductController::class, 'show'])->name('products.show');
 
 Route::get('/servicios', ServiceController::class)->name('services');
 

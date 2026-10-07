@@ -29,4 +29,15 @@ class ProductController extends Controller
             'products' => $catalog->products($current['slug'], $type),
         ]);
     }
+
+    public function show(Catalog $catalog, string $category, string $product): View
+    {
+        $item = $catalog->product($category, $product) ?? abort(404);
+
+        return view('pages.products.show', [
+            'product' => $item,
+            'category' => $catalog->category($category),
+            'related' => $catalog->related($item),
+        ]);
+    }
 }

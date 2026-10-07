@@ -8,7 +8,7 @@
     color: $white;
 
     > .container {
-        padding-left: calc(#{$grid-gutter-width * .5} + 1px);
+        padding-left: calc(var(--container-pad) + 1px);
     }
 
     &__title {

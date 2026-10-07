@@ -49,10 +49,15 @@
 @import 'components/cta-banner';
 @import 'components/forms';
 @import 'components/contact-details';
+@import 'components/breadcrumb';
+@import 'components/product-gallery';
+@import 'components/product-highlights';
+@import 'components/spec-table';
 
 // 7. Pages
 @import 'pages/home';
 @import 'pages/about';
 @import 'pages/products';
+@import 'pages/product-detail';
 @import 'pages/services';
 @import 'pages/contact';
