@@ -2,6 +2,12 @@
 // Marcas: tira de logos (inicio) y filas de nombres (quiénes somos)
 // =============================================================================
 
+$brand-strip-gap: 36px;
+
+@keyframes brand-marquee {
+    to { translate: -50% 0; }
+}
+
 .brand-strip {
     display: grid;
     gap: 1.5rem;
@@ -21,21 +27,61 @@
         text-transform: uppercase;
     }
 
+    // Carrusel infinito: dos copias idénticas de la lista; la pista se
+    // desplaza el 50% (una copia) y vuelve a empezar sin que se note.
+    &__marquee {
+        overflow: hidden;
+        // Llega hasta el borde derecho de la ventana
+        margin-right: calc(-1 * (var(--container-pad) + max(0px, (100vw - #{$container-max-width}) / 2)));
+        mask-image: linear-gradient(to right, transparent, $black 48px, $black calc(100% - 48px), transparent);
+
+        // En móvil y tablet ocupa todo el ancho de la pantalla
+        @include media-breakpoint-down(lg) {
+            margin-left: calc(-1 * var(--container-pad));
+        }
+    }
+
+    &__track {
+        display: flex;
+        width: max-content;
+        animation: brand-marquee var(--marquee-duration, 30s) linear infinite;
+
+        .brand-strip__marquee:hover & {
+            animation-play-state: paused;
+        }
+    }
+
     &__logos {
-        @include bleed-right-scroller;
-        gap: 36px;
-        margin-top: 0;
-        margin-bottom: 0;
-        padding-left: 0;
+        display: flex;
+        flex: 0 0 auto;
+        gap: $brand-strip-gap;
+        margin: 0;
+        padding: 0 $brand-strip-gap 0 0; // mismo espacio al unir las dos copias
         list-style: none;
     }
 
     &__logo {
+        flex: 0 0 auto;
         width: 125px;
 
         .media {
             --media-ratio: 125 / 54;
             background-color: $losos-placeholder;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &__marquee {
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        &__track {
+            animation: none;
+        }
+
+        &__logos[aria-hidden] {
+            display: none;
         }
     }
 
