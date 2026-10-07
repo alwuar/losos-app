@@ -137,7 +137,6 @@ $admin-sidebar-width: 248px;
 }
 
 .admin-content {
-    max-width: 1200px;
     padding: 32px;
 
     @include media-breakpoint-down(md) {
