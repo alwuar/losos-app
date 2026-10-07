@@ -1,12 +1,12 @@
 // =============================================================================
-// Hero de inicio (<x-sections.hero>) — 561px de alto a 1280
+// Hero de inicio (<x-sections.hero>) — 661px de alto en escritorio
 //
 // Una diapositiva = imagen fija. Varias = slider (.hero--slider, Carousel de
 // Bootstrap con transición de desvanecido).
 // =============================================================================
 
-$hero-min-height:        561px;
-$hero-min-height-mobile: 520px;
+$hero-min-height:        661px;
+$hero-min-height-mobile: 600px;
 
 .hero {
     position: relative;
@@ -20,7 +20,7 @@ $hero-min-height-mobile: 520px;
         display: flex;
         align-items: flex-start;
         min-height: $hero-min-height;
-        padding: 169px 0 60px;
+        padding: 219px 0 60px; // el texto se mantiene centrado en la altura extra
         isolation: isolate;
     }
 
@@ -118,7 +118,7 @@ $hero-min-height-mobile: 520px;
     @include media-breakpoint-down(lg) {
         &__slide {
             min-height: $hero-min-height-mobile;
-            padding: 140px 0 72px;
+            padding: 170px 0 72px;
         }
 
         &__title {
