@@ -13,6 +13,7 @@ $glass-bg:           linear-gradient(135deg, rgba($losos-navy, .92), rgba($losos
 $glass-bg-light:     linear-gradient(135deg, rgba($losos-navy, .55), rgba($losos-navy, .35));
 $glass-border:       rgba($white, .14);
 $glass-blur:         16px;
+$header-transition:  .5s ease;
 $header-gap:         12px; // espacio entre el borde de la ventana y la barra
 $header-gap-desktop: 16px;
 
@@ -41,20 +42,35 @@ $header-gap-desktop: 16px;
     &__bar {
         gap: 0 1rem;
         padding: .75rem 1rem;
+        isolation: isolate;
         border: 1px solid $glass-border;
         border-radius: 20px;
-        background: $glass-bg;
+        background: $glass-bg-light;
         box-shadow:
             0 10px 30px rgba($black, .18),
             inset 0 1px 0 rgba($white, .08); // brillo sutil arriba
         -webkit-backdrop-filter: blur($glass-blur) saturate(140%);
         backdrop-filter: blur($glass-blur) saturate(140%);
         pointer-events: auto;
-        transition: background .3s ease, box-shadow .3s ease;
+        transition: box-shadow $header-transition;
+
+        // Capa del vidrio sólido: aparece con opacidad porque los degradados
+        // no se pueden animar directamente
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            border-radius: inherit;
+            background: $glass-bg;
+            transition: opacity $header-transition;
+        }
 
         // Sin soporte de blur: vidrio más opaco para que se lea igual
         @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-            background: rgba($losos-navy, .96);
+            &::before {
+                background: rgba($losos-navy, .96);
+            }
         }
 
         @include media-breakpoint-up(xl) {
@@ -70,8 +86,11 @@ $header-gap-desktop: 16px;
 
     // Sobre el hero, más translúcida mientras no se haga scroll
     &--transparent:not(.is-scrolled) &__bar {
-        background: $glass-bg-light;
         box-shadow: 0 10px 30px rgba($black, .12), inset 0 1px 0 rgba($white, .08);
+
+        &::before {
+            opacity: 0;
+        }
     }
 
     .navbar-brand {

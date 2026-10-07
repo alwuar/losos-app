@@ -99,6 +99,10 @@ $form-label-margin-bottom: 11px;
 $header-height:  104px; // barra flotante (88px) + margen superior (16px)
 $page-hero-height: 240px;
 
+// Slider de inicio (Carousel de Bootstrap): cambio de diapositiva suave
+$carousel-transition-duration: .5s;
+$carousel-transition:          transform $carousel-transition-duration ease;
+
 // Animación de entrada al hacer scroll (components/_reveal.scss)
 $reveal-distance: 40px;
 $reveal-duration: .8s;
