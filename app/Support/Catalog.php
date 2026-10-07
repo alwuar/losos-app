@@ -4,6 +4,7 @@ namespace App\Support;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\HeroSlide;
 use App\Models\Product;
 use App\Models\SiteImage;
 use Illuminate\Support\Collection;
@@ -100,6 +101,37 @@ class Catalog
             ->get()
             ->map(fn (Brand $brand) => ['name' => $brand->name, 'logo' => $brand->logo])
             ->all();
+    }
+
+    /**
+     * Diapositivas visibles del encabezado de Inicio. Si no hay ninguna se
+     * usa el contenido por defecto de config/losos.php ("hero").
+     */
+    public function heroSlides(): Collection
+    {
+        $slides = HeroSlide::query()
+            ->active()
+            ->ordered()
+            ->get()
+            ->map(fn (HeroSlide $slide) => [
+                'image' => $slide->image,
+                'title' => $slide->title,
+                'text' => $slide->text,
+                'buttons' => $slide->buttons(),
+            ]);
+
+        if ($slides->isNotEmpty()) {
+            return $slides;
+        }
+
+        $default = config('losos.hero');
+
+        return collect([[
+            ...$default,
+            'buttons' => collect($default['buttons'])
+                ->map(fn (array $button) => [...$button, 'url' => url($button['url']), 'external' => false])
+                ->all(),
+        ]]);
     }
 
     public function services(): Collection

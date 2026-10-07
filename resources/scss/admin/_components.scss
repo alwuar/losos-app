@@ -144,6 +144,16 @@
             height: 100%;
             object-fit: contain;
         }
+
+        // Miniatura horizontal para fotos de fondo (slider)
+        &--wide {
+            width: 104px;
+            height: 46px;
+
+            img {
+                object-fit: cover;
+            }
+        }
     }
 
     &__actions {

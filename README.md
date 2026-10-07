@@ -59,8 +59,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Panel administrativo
 
-El sitio incluye un panel en `/admin` para administrar productos (datos, fotos,
-ficha técnica y PDF), categorías y tipos, marcas e imágenes de las secciones.
+El sitio incluye un panel en `/admin` para administrar el slider de Inicio,
+productos (datos, fotos, ficha técnica y PDF), categorías y tipos, marcas e
+imágenes de las secciones.
+
+**Slider de inicio:** cada diapositiva lleva imagen, título, texto y hasta dos
+botones. Con una sola diapositiva visible el encabezado es una imagen fija; con
+dos o más se convierte en slider (Carousel de Bootstrap). Si no hay ninguna
+visible se usa el contenido de `config/losos.php` (`hero`).
 
 Primera instalación:
 

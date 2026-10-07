@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HeroSlideController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SiteImageController;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->except('show')
             ->parameters(['marcas' => 'brand'])
             ->names('brands');
+
+        Route::resource('slider', HeroSlideController::class)
+            ->except('show')
+            ->parameters(['slider' => 'slide'])
+            ->names('slides');
 
         Route::get('imagenes', [SiteImageController::class, 'index'])->name('site-images.index');
         Route::put('imagenes/{siteImage}', [SiteImageController::class, 'update'])->name('site-images.update');

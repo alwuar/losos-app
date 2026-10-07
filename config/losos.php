@@ -79,16 +79,26 @@ return [
     ],
 
     /*
+    | Encabezado de Inicio cuando no hay diapositivas visibles en el panel
+    | (/admin → Slider de inicio).
+    */
+    'hero' => [
+        'image' => 'images/home/hero.jpg',
+        'title' => "Donde la confianza se\nconvierte en construcción.",
+        'text' => 'Maquinaria de construcción nueva, de las marcas líderes del mundo, respaldada por una empresa familiar mexicana que te acompaña más allá de la venta.',
+        'buttons' => [
+            ['label' => 'Ver catálogo', 'url' => '/productos', 'variant' => 'primary'],
+            ['label' => 'Contáctanos', 'url' => '/contacto', 'variant' => 'outline-light'],
+        ],
+    ],
+
+    /*
     | Imágenes fijas de las secciones. Se reemplazan desde el panel
     | (/admin → Imágenes del sitio); "default" es la que se usa mientras no
-    | se haya subido otra.
+    | se haya subido otra. El encabezado de Inicio tiene su propio módulo
+    | (/admin → Slider de inicio).
     */
     'site_images' => [
-        'home.hero' => [
-            'label' => 'Inicio · Imagen principal',
-            'help' => 'Fondo del encabezado de Inicio. JPG horizontal de 1920 × 840 px aprox.',
-            'default' => 'images/home/hero.jpg',
-        ],
         'about.history' => [
             'label' => 'Quiénes somos · Nuestra historia',
             'help' => 'Imagen cuadrada, 900 × 900 px aprox.',

@@ -28,6 +28,7 @@ class HomeController extends Controller
                     'text' => 'Te acompañamos con confianza y honestidad durante todo el ciclo de vida de tu equipo.',
                 ],
             ],
+            'slides' => $catalog->heroSlides(),
             'categories' => $catalog->categories(),
             'services' => $catalog->services(),
             'brands' => $catalog->brands(),

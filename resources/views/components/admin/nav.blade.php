@@ -1,6 +1,7 @@
 @php
     $items = [
         ['route' => 'admin.dashboard', 'match' => 'admin.dashboard', 'icon' => 'bi-speedometer2', 'label' => 'Inicio'],
+        ['route' => 'admin.slides.index', 'match' => 'admin.slides.*', 'icon' => 'bi-collection', 'label' => 'Slider de inicio'],
         ['route' => 'admin.products.index', 'match' => 'admin.products.*', 'icon' => 'bi-truck', 'label' => 'Productos'],
         ['route' => 'admin.categories.index', 'match' => 'admin.categories.*', 'icon' => 'bi-grid', 'label' => 'Categorías y tipos'],
         ['route' => 'admin.brands.index', 'match' => 'admin.brands.*', 'icon' => 'bi-award', 'label' => 'Marcas'],

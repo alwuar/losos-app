@@ -10,7 +10,7 @@ use Throwable;
  * Imágenes fijas de las secciones del sitio (hero, nuestra historia, servicios…).
  *
  * Las claves y las imágenes por defecto están en config/losos.php (site_images).
- * En las vistas: SiteImage::path('home.hero')
+ * En las vistas: SiteImage::path('about.history')
  */
 #[Fillable(['key', 'label', 'help', 'path', 'sort_order'])]
 class SiteImage extends Model

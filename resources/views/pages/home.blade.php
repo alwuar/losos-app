@@ -1,16 +1,7 @@
 <x-layouts.app header="transparent">
 
-    <x-sections.hero :image="\App\Models\SiteImage::path('home.hero')">
-        <x-slot:title>Donde la confianza se<br class="br-lg"> convierte en construcción.</x-slot:title>
-
-        Maquinaria de construcción nueva, de las marcas líderes del mundo, respaldada
-        por una empresa familiar mexicana que te acompaña más allá de la venta.
-
-        <x-slot:actions>
-            <x-ui.button :href="route('products.index')" size="lg">Ver catálogo</x-ui.button>
-            <x-ui.button :href="route('contact')" variant="outline-light" size="lg">Contáctanos</x-ui.button>
-        </x-slot:actions>
-    </x-sections.hero>
+    {{-- Encabezado: imagen fija o slider (se administra en /admin → Slider de inicio) --}}
+    <x-sections.hero :slides="$slides" />
 
     {{-- Marcas aliadas --}}
     <x-ui.section class="home-brands">
