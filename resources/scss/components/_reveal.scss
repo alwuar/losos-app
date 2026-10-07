@@ -1,0 +1,77 @@
+// =============================================================================
+// Aparición al hacer scroll — resources/js/modules/reveal.js
+//
+//   data-reveal="up | fade | left | right | zoom"
+//
+// Los elementos solo se ocultan si el JS está activo (clase .has-reveal en
+// <html>) y nunca cuando el usuario pidió reducir el movimiento.
+// =============================================================================
+
+.has-reveal [data-reveal] {
+    --reveal-x: 0px;
+    --reveal-y: #{$reveal-distance};
+    --reveal-scale: 1;
+
+    opacity: 0;
+    translate: var(--reveal-x) var(--reveal-y);
+    scale: var(--reveal-scale);
+    transition:
+        opacity $reveal-duration $reveal-easing,
+        translate $reveal-duration $reveal-easing,
+        scale $reveal-duration $reveal-easing;
+
+    &[data-reveal="fade"] {
+        --reveal-y: 0px;
+    }
+
+    &[data-reveal="left"] {
+        --reveal-x: -#{$reveal-distance};
+        --reveal-y: 0px;
+    }
+
+    &[data-reveal="right"] {
+        --reveal-x: #{$reveal-distance};
+        --reveal-y: 0px;
+    }
+
+    &[data-reveal="zoom"] {
+        --reveal-y: 0px;
+        --reveal-scale: .92;
+    }
+
+    // Si salió por arriba, regresa bajando (en lugar de subir)
+    &[data-reveal="up"][data-reveal-from="top"] {
+        --reveal-y: -#{$reveal-distance};
+    }
+
+    &.is-revealed {
+        opacity: 1;
+        translate: 0 0;
+        scale: 1;
+        transition-delay: var(--reveal-delay, 0ms);
+    }
+}
+
+// En filas con scroll horizontal las tarjetas solo se desvanecen
+// (con desplazamiento, el contenedor con overflow las recortaría)
+.has-reveal .feature-row--scroll > [data-reveal] {
+    --reveal-x: 0px;
+    --reveal-y: 0px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .has-reveal [data-reveal] {
+        opacity: 1;
+        translate: none;
+        scale: none;
+        transition: none;
+    }
+}
+
+@media print {
+    .has-reveal [data-reveal] {
+        opacity: 1;
+        translate: none;
+        scale: none;
+    }
+}

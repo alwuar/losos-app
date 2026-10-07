@@ -7,7 +7,7 @@
     'linkLabel' => 'Ver catálogo',
 ])
 
-<article {{ $attributes->class(['category-card']) }}>
+<article {{ $attributes->merge(['data-reveal' => 'up'])->class(['category-card']) }}>
     <x-ui.media :src="$image" :alt="$title" class="category-card__media" />
 
     <div class="category-card__body">

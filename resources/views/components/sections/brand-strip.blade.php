@@ -5,12 +5,12 @@
 ])
 
 <div {{ $attributes->class(['brand-strip']) }}>
-    <h2 class="brand-strip__title">{!! str_replace(' ', '<br>', e($title)) !!}</h2>
+    <h2 class="brand-strip__title" data-reveal="fade">{!! str_replace(' ', '<br>', e($title)) !!}</h2>
 
     <ul class="brand-strip__logos">
         @foreach ($brands as $brand)
             @php($hasLogo = ! empty($brand['logo']) && file_exists(public_path($brand['logo'])))
-            <li class="brand-strip__logo">
+            <li class="brand-strip__logo" data-reveal="zoom">
                 <x-ui.media :src="$hasLogo ? $brand['logo'] : null" :alt="$brand['name']" fit="contain" />
             </li>
         @endforeach

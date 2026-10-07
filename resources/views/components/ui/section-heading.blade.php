@@ -10,7 +10,7 @@
     'as' => 'h2',
 ])
 
-<header {{ $attributes->class([
+<header {{ $attributes->merge(['data-reveal' => 'up'])->class([
     'section-heading',
     'section-heading--center' => $align === 'center',
     'section-heading--uppercase' => $uppercase,

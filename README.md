@@ -72,3 +72,12 @@ php artisan storage:link      # hace visibles las imágenes que se suben
 php artisan losos:admin       # crea el usuario para entrar al panel
 npm install && npm run build
 ```
+
+## SEO, animaciones y scroll
+
+- **Meta tags:** `resources/views/components/seo/meta.blade.php` genera título, descripción, canonical, Open Graph, Twitter/X, íconos y datos estructurados (schema.org). Cada página los define con las props del layout: `<x-layouts.app title="..." description="..." image="..." />`.
+- **Imagen para compartir:** `public/images/seo/og-default.jpg` (1200 × 630 px) se usa cuando la página no tiene imagen propia.
+- **Indexación:** solo con `APP_ENV=production` se permite que Google indexe el sitio; en local o staging las páginas llevan `noindex`. Se puede forzar con `LOSOS_INDEXABLE=true|false`.
+- **Sitemap:** `/sitemap.xml` se genera con las categorías y los productos publicados. Dalo de alta en Google Search Console.
+- **Animación al hacer scroll:** cualquier elemento con `data-reveal="up|fade|left|right|zoom"` aparece al entrar en pantalla y se oculta al salir (`resources/js/modules/reveal.js`). Los encabezados y las tarjetas ya lo traen; para quitarlo en un caso: `:data-reveal="false"`.
+- **Scroll suave:** Lenis (`resources/js/modules/smooth-scroll.js`). Ambos efectos se desactivan si el usuario tiene activado "reducir movimiento" en su sistema.

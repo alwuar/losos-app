@@ -14,9 +14,9 @@
 ])
 
 <div {{ $attributes->class(['split', 'split--reverse' => $reverse, 'split--accent' => $accent]) }}>
-    <x-ui.media :src="$image" :alt="$imageAlt ?: $title" class="split__media" />
+    <x-ui.media :src="$image" :alt="$imageAlt ?: $title" class="split__media" :data-reveal="$reverse ? 'right' : 'left'" />
 
-    <div class="split__content">
+    <div class="split__content" data-reveal="{{ $reverse ? 'left' : 'right' }}">
         @if ($eyebrow)
             <p class="split__eyebrow">{{ $eyebrow }}</p>
         @endif

@@ -8,14 +8,14 @@
 
 <section {{ $attributes->class(['cta-banner', 'cta-banner--center' => $align === 'center', 'cta-banner--compact' => $compact]) }}>
     <div class="container">
-        <h2 class="cta-banner__title">{{ $title }}</h2>
+        <h2 class="cta-banner__title" data-reveal="up">{{ $title }}</h2>
 
         @if ($slot->isNotEmpty())
-            <p class="cta-banner__text">{{ $slot }}</p>
+            <p class="cta-banner__text" data-reveal="up">{{ $slot }}</p>
         @endif
 
         @if ($actions)
-            <div class="cta-banner__actions">{{ $actions }}</div>
+            <div class="cta-banner__actions" data-reveal="up">{{ $actions }}</div>
         @endif
     </div>
 </section>

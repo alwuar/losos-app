@@ -1,13 +1,13 @@
 :root {
     --losos-orange: #{$losos-orange};
     --losos-navy: #{$losos-navy};
-    --losos-header-height: #{$header-height};
+    --losos-header-height: 72px;
 
     // Margen lateral del contenido en escritorio: $container-padding-desktop
     --container-pad: 20px;
 
     @include media-breakpoint-up(md) { --container-pad: 32px; }
-    @include media-breakpoint-up(lg) { --container-pad: 48px; }
+    @include media-breakpoint-up(lg) { --container-pad: 48px; --losos-header-height: #{$header-height}; }
     @include media-breakpoint-up(xl) { --container-pad: #{$container-padding-desktop}; }
 }
 
@@ -18,8 +18,16 @@
 }
 
 html {
-    scroll-behavior: smooth;
-    scroll-padding-top: $header-height;
+    scroll-padding-top: var(--losos-header-height);
+
+    @media (prefers-reduced-motion: no-preference) {
+        scroll-behavior: smooth;
+    }
+
+    // Con el scroll suave de Lenis activo, el desplazamiento lo controla el JS
+    &.lenis {
+        scroll-behavior: auto;
+    }
 }
 
 html,

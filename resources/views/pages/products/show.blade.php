@@ -1,4 +1,9 @@
-<x-layouts.app :title="$product['name']" :description="$product['description']">
+<x-layouts.app
+    :title="$product['name'].' | '.$product['type_label']"
+    :description="collect([$product['tagline'], $product['description']])->filter()->map(fn ($text) => rtrim($text, '. '))->implode('. ')"
+    :image="$product['image']"
+    :image-alt="$product['name']"
+    :canonical="$product['url']">
 
     <x-ui.breadcrumb :items="[
         ['label' => 'Productos', 'url' => route('products.index')],
@@ -12,7 +17,7 @@
         <div class="product-detail__grid">
             <x-products.gallery :images="$product['gallery'] ?: [$product['image']]" :alt="$product['name']" />
 
-            <div class="product-detail__info">
+            <div class="product-detail__info" data-reveal="right">
                 <x-ui.eyebrow>{{ $product['type_label'] }}</x-ui.eyebrow>
 
                 @isset($product['brand'])
@@ -69,7 +74,7 @@
 
             <x-products.spec-table :groups="$product['spec_groups']" />
 
-            <p class="product-specs__note">
+            <p class="product-specs__note" data-reveal="fade">
                 Las especificaciones pueden variar según la configuración del equipo. Confirma los datos con un asesor.
             </p>
         </x-ui.section>

@@ -1,4 +1,7 @@
-<x-layouts.app title="Quiénes somos">
+<x-layouts.app
+    title="Quiénes somos"
+    description="Distribuidora Losos es una empresa familiar mexicana nacida en 2020 que distribuye maquinaria de construcción de marcas líderes como Zoomlion y Manitou, con servicio más allá de la venta."
+    :image="\App\Models\SiteImage::path('about.history')">
 
     <x-sections.page-hero>Una empresa familiar mexicana,<br class="br-lg"> aliada de la construcción.</x-sections.page-hero>
 

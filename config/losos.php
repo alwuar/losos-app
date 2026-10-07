@@ -31,17 +31,42 @@ return [
             'name' => 'Oficina',
             'short' => 'Calle 116 núm 430 por 59F, Col. Bojorquez, Mérida, Yuc.',
             'full' => 'Calle 116 núm 430 por 59F, Col. Bojorquez. C.P. 97230, Mérida, Yucatán.',
+            'street' => 'Calle 116 núm 430 por 59F, Col. Bojorquez',
+            'locality' => 'Mérida',
+            'region' => 'Yucatán',
+            'postal_code' => '97230',
         ],
         'showroom' => [
             'name' => 'Patio de exhibición',
             'short' => 'Periférico–Ticimul Km 3.5, Fracc. Santa Cruz. C.P. 97394',
             'full' => 'Periférico–Ticimul Km 3.5, Fracc. Santa Cruz. C.P. 97394, Umán, Yucatán.',
+            'street' => 'Periférico–Ticimul Km 3.5, Fracc. Santa Cruz',
+            'locality' => 'Umán',
+            'region' => 'Yucatán',
+            'postal_code' => '97394',
         ],
     ],
 
     'social' => [
         'facebook' => env('LOSOS_FACEBOOK_URL', '#'),
         'instagram' => env('LOSOS_INSTAGRAM_URL', '#'),
+    ],
+
+    /*
+    | SEO y redes sociales (components/site/seo.blade.php)
+    |
+    | indexable: solo en producción (APP_ENV=production) se permite que
+    | Google indexe el sitio; en local o staging las páginas llevan "noindex".
+    | Se puede forzar con LOSOS_INDEXABLE=true|false en el .env.
+    */
+    'seo' => [
+        'lang' => 'es-MX',
+        'locale' => 'es_MX',
+        'indexable' => env('LOSOS_INDEXABLE', env('APP_ENV') === 'production'),
+        'image' => 'images/seo/og-default.jpg', // 1200 × 630 px
+        'image_alt' => 'Distribuidora Losos — maquinaria de construcción nueva',
+        'theme_color' => '#2a3b47',
+        'twitter' => env('LOSOS_TWITTER'), // @usuario, si tienen cuenta
     ],
 
     // Navegación principal (nombre de ruta => etiqueta)

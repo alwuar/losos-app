@@ -1,4 +1,8 @@
-<x-layouts.app title="Servicios" class="page--services">
+<x-layouts.app
+    title="Servicios"
+    description="Renta de maquinaria, refacciones y lubricantes, y servicio técnico especializado. En Distribuidora Losos te acompañamos más allá de la venta."
+    :image="$services->first()['image'] ?? null"
+    class="page--services">
 
     <x-sections.page-hero>Te acompañamos más allá<br class="br-lg"> de la venta.</x-sections.page-hero>
 

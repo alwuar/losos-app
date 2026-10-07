@@ -98,3 +98,8 @@ $form-label-margin-bottom: 11px;
 // Medidas propias
 $header-height:  98px;
 $page-hero-height: 240px;
+
+// Animación de entrada al hacer scroll (components/_reveal.scss)
+$reveal-distance: 40px;
+$reveal-duration: .8s;
+$reveal-easing:   cubic-bezier(.22, .61, .36, 1);

@@ -17,14 +17,14 @@
 
     <div class="container">
         <div class="hero__content">
-            <h1 class="hero__title">{{ $title }}</h1>
+            <h1 class="hero__title" data-reveal="up">{{ $title }}</h1>
 
             @if ($slot->isNotEmpty())
-                <p class="hero__text">{{ $slot }}</p>
+                <p class="hero__text" data-reveal="up">{{ $slot }}</p>
             @endif
 
             @if ($actions)
-                <div class="hero__actions">{{ $actions }}</div>
+                <div class="hero__actions" data-reveal="up">{{ $actions }}</div>
             @endif
         </div>
     </div>

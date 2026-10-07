@@ -4,7 +4,7 @@
     $office = config('losos.locations.office');
 @endphp
 
-<div {{ $attributes->class(['contact-details']) }}>
+<div {{ $attributes->merge(['data-reveal' => 'up'])->class(['contact-details']) }}>
     <div class="contact-details__item">
         <p class="contact-details__label">Email</p>
         <p class="contact-details__value"><a href="mailto:{{ $contact['email'] }}">{{ $contact['email'] }}</a></p>

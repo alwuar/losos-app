@@ -10,7 +10,7 @@
     'label' => 'Filtrar',
 ])
 
-<ul {{ $attributes->class(['filter-pills']) }} aria-label="{{ $label }}">
+<ul {{ $attributes->merge(['data-reveal' => 'up'])->class(['filter-pills']) }} aria-label="{{ $label }}">
     @foreach ($items as $slug => $name)
         <li>
             <a href="{{ $url($slug) }}"

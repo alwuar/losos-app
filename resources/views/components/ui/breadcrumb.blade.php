@@ -19,3 +19,7 @@
         </ol>
     </div>
 </nav>
+
+@push('schema')
+    <x-seo.json-ld :data="\App\Support\Seo::breadcrumbs($items)" />
+@endpush

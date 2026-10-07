@@ -1,24 +1,32 @@
 @props([
     'title' => null,
-    'description' => config('losos.description'),
-    'header' => 'solid', // solid | transparent
+    'description' => null,
+    'image' => null,       // imagen para compartir en redes (ruta en /public o URL)
+    'imageAlt' => null,
+    'canonical' => null,
+    'noindex' => false,
+    'header' => 'solid',   // solid | transparent
 ])
 
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ config('losos.seo.lang') }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ? $title.' | '.config('losos.name') : config('losos.name').' | '.config('losos.tagline') }}</title>
-    <meta name="description" content="{{ $description }}">
+    {{-- Activa las animaciones de scroll antes de pintar (evita parpadeo) --}}
+    <script>document.documentElement.classList.add('has-reveal')</script>
 
-    <meta property="og:title" content="{{ $title ?? config('losos.name') }}">
-    <meta property="og:description" content="{{ $description }}">
-    <meta property="og:type" content="website">
+    <x-seo.meta
+        :title="$title"
+        :description="$description"
+        :image="$image"
+        :image-alt="$imageAlt"
+        :canonical="$canonical"
+        :noindex="$noindex" />
 
-    <link rel="icon" href="{{ asset('favicon.ico') }}">
+    @stack('schema')
 
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
     @stack('head')

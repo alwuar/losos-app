@@ -1,7 +1,7 @@
 {{-- Tarjeta de producto del catálogo (enlaza al detalle) --}}
 @props(['product'])
 
-<article {{ $attributes->class(['product-card']) }}>
+<article {{ $attributes->merge(['data-reveal' => 'up'])->class(['product-card']) }}>
     <a href="{{ $product['url'] }}" class="product-card__media-link" tabindex="-1" aria-hidden="true">
         <x-ui.media :src="$product['image'] ?? null" :alt="$product['name']" fit="contain" class="product-card__media" />
     </a>

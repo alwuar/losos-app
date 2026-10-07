@@ -8,7 +8,7 @@
     @foreach (collect($brands)->chunk($perRow) as $row)
         <ul class="brand-grid__row list-unstyled mb-0">
             @foreach ($row as $brand)
-                <li class="brand-grid__item">
+                <li class="brand-grid__item" data-reveal="zoom">
                     @if (! empty($brand['logo']) && file_exists(public_path($brand['logo'])))
                         <img src="{{ asset($brand['logo']) }}" alt="{{ $brand['name'] }}" loading="lazy">
                     @else

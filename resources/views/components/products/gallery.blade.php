@@ -6,7 +6,7 @@
 
 @php($images = array_values(array_filter($images)))
 
-<div {{ $attributes->class(['product-gallery']) }} data-gallery>
+<div {{ $attributes->merge(['data-reveal' => 'left'])->class(['product-gallery']) }} data-gallery>
     <x-ui.media :src="$images[0] ?? null" :alt="$alt" fit="contain" loading="eager" class="product-gallery__main" data-gallery-main />
 
     @if (count($images) > 1)

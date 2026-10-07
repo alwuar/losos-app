@@ -1,13 +1,15 @@
-<x-layouts.app title="Contacto">
+<x-layouts.app
+    title="Contacto"
+    description="Cotiza maquinaria de construcción nueva con Distribuidora Losos. Escríbenos o visita nuestra oficina en Mérida y patio de exhibición en Umán, Yucatán.">
 
     <x-sections.page-hero class="contact-page__hero">Cuéntanos de tu proyecto</x-sections.page-hero>
 
     {{-- Datos + formulario --}}
     <x-ui.section class="contact-page">
         <div class="contact-page__layout">
-            <x-contact.details class="contact-page__details" />
+            <x-contact.details class="contact-page__details" data-reveal="left" />
 
-            <div class="contact-page__form">
+            <div class="contact-page__form" data-reveal="right">
                 @if (session('status'))
                     <div class="alert alert-success" role="status">{{ session('status') }}</div>
                 @endif

@@ -7,7 +7,7 @@
     'tone' => 'ink',
 ])
 
-<article {{ $attributes->class(['feature-card', 'feature-card--navy' => $tone === 'navy']) }}>
+<article {{ $attributes->merge(['data-reveal' => 'up'])->class(['feature-card', 'feature-card--navy' => $tone === 'navy']) }}>
     <x-ui.icon :name="$icon" class="feature-card__icon" />
     <h3 class="feature-card__title">{{ $title }}</h3>
     <p class="feature-card__text">{{ $slot }}</p>

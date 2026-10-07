@@ -4,7 +4,7 @@
     'icon' => null,
 ])
 
-<article {{ $attributes->class(['info-card']) }}>
+<article {{ $attributes->merge(['data-reveal' => 'up'])->class(['info-card']) }}>
     @if ($icon)
         <x-ui.icon :name="$icon" class="info-card__icon" />
     @endif

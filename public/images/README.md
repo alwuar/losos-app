@@ -11,5 +11,7 @@ Esta carpeta solo guarda las imágenes que trae el sitio de inicio:
 | `brand/logo-losos.png` | Logo del header, footer y panel |
 | `home/hero.jpg` | Foto principal de Inicio (se puede reemplazar desde el panel) |
 | `categories/*.jpg` | Imágenes iniciales de las categorías |
+| `seo/og-default.jpg` | Imagen al compartir el sitio en redes (1200 × 630 px) |
+| `seo/icon-*.png` | Íconos del sitio (favicon, celulares) |
 
 Mientras falte una imagen, el sitio muestra un recuadro gris en su lugar.
