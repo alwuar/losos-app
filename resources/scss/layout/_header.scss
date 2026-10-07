@@ -1,95 +1,195 @@
 // =============================================================================
-// Header (98px). Variantes: --solid (navy) y --transparent (sobre el hero)
+// Header: barra flotante de "cristal" (navy translúcido con desenfoque)
+//
+//   --solid        páginas internas: se queda pegada arriba al hacer scroll
+//   --transparent  inicio: flota sobre el hero, más translúcida hasta que se
+//                  hace scroll (.is-scrolled, resources/js/modules/header.js)
+//
+// En escritorio (xl) son 3 columnas: logo | enlaces | botón. Abajo de xl el
+// menú se despliega dentro de la misma barra (collapse de Bootstrap).
 // =============================================================================
+
+$glass-bg:           linear-gradient(135deg, rgba($losos-navy, .92), rgba($losos-navy, .78));
+$glass-bg-light:     linear-gradient(135deg, rgba($losos-navy, .55), rgba($losos-navy, .35));
+$glass-border:       rgba($white, .14);
+$glass-blur:         16px;
+$header-gap:         12px; // espacio entre el borde de la ventana y la barra
+$header-gap-desktop: 16px;
 
 .site-header {
     z-index: $zindex-fixed;
     width: 100%;
-    transition: background-color .25s ease, box-shadow .25s ease;
+    padding-top: $header-gap;
+    pointer-events: none; // el espacio alrededor de la barra no tapa clics
 
-    .navbar {
-        min-height: $header-height;
-        padding: 0;
+    @include media-breakpoint-up(xl) {
+        padding-top: $header-gap-desktop;
     }
 
     &--solid {
         position: sticky;
         top: 0;
-        background-color: $losos-navy;
     }
 
     &--transparent {
         position: fixed;
         top: 0;
         left: 0;
+    }
 
-        &.is-scrolled {
-            background-color: $losos-navy;
-            box-shadow: 0 2px 12px rgba($black, .18);
+    // ---- La barra ----
+    &__bar {
+        gap: 0 1rem;
+        padding: .75rem 1rem;
+        border: 1px solid $glass-border;
+        border-radius: 20px;
+        background: $glass-bg;
+        box-shadow:
+            0 10px 30px rgba($black, .18),
+            inset 0 1px 0 rgba($white, .08); // brillo sutil arriba
+        -webkit-backdrop-filter: blur($glass-blur) saturate(140%);
+        backdrop-filter: blur($glass-blur) saturate(140%);
+        pointer-events: auto;
+        transition: background .3s ease, box-shadow .3s ease;
+
+        // Sin soporte de blur: vidrio más opaco para que se lea igual
+        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+            background: rgba($losos-navy, .96);
         }
+
+        @include media-breakpoint-up(xl) {
+            gap: 1.5rem;
+            padding: 1rem 1.25rem 1rem 1.5rem;
+            border-radius: 24px;
+        }
+
+        @include media-breakpoint-up(xxl) {
+            gap: 2rem;
+        }
+    }
+
+    // Sobre el hero, más translúcida mientras no se haga scroll
+    &--transparent:not(.is-scrolled) &__bar {
+        background: $glass-bg-light;
+        box-shadow: 0 10px 30px rgba($black, .12), inset 0 1px 0 rgba($white, .08);
     }
 
     .navbar-brand {
-        margin: 0 0 0 9px;
+        flex-shrink: 0;
+        margin: 0;
         padding: 0;
     }
 
+    .navbar-collapse {
+        @include media-breakpoint-up(xl) {
+            gap: 1.5rem;
+        }
+    }
+
+    // ---- Enlaces ----
     .navbar-nav {
-        gap: 0;
+        gap: .25rem;
+        padding: .75rem 0 0;
+
+        @include media-breakpoint-up(xl) {
+            gap: clamp(1rem, 1.6vw, 2.5rem);
+            padding: 0;
+        }
     }
 
     .nav-link {
-        padding: 0 22px !important;
-        font-size: .875rem;
-        font-weight: $font-weight-bold;
-        line-height: 1;
+        padding: .6rem .25rem;
+        font-size: .9375rem; // 15px
+        font-weight: $font-weight-semibold;
+        line-height: 1.2;
         color: $white;
+        white-space: nowrap;
+        transition: color .2s ease;
 
-        &:hover {
+        &:hover,
+        &:focus-visible,
+        &.active {
             color: $losos-orange;
         }
+
+        @include media-breakpoint-up(xl) {
+            padding: .4rem 0;
+        }
     }
 
+    // ---- Botón de WhatsApp ----
     &__cta {
-        height: 27px;
-        margin-left: 22px;
-        padding: 0 10px;
-        font-size: .875rem;
-        line-height: 1;
+        flex-shrink: 0;
+        padding: .85rem 1.25rem;
+        border-radius: 14px;
+        font-size: 1rem;
+        line-height: 1.2;
+        color: $white;
+        white-space: nowrap;
+        transition: background-color .2s ease, border-color .2s ease, transform .2s ease;
+
+        &:hover,
+        &:focus-visible {
+            color: $white;
+            transform: translateY(-1px);
+        }
+
+        @include media-breakpoint-up(xxl) {
+            padding-inline: 1.75rem;
+        }
     }
 
-    .navbar-toggler {
-        border: 0;
-        padding: .375rem;
+    // ---- Hamburguesa: tres líneas que se vuelven una X ----
+    &__toggle {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        padding: 0 10px;
+        border: 1px solid $glass-border;
+        border-radius: 12px;
+        background: rgba($white, .08);
 
         &:focus {
+            box-shadow: none;
+        }
+
+        &:focus-visible {
             box-shadow: 0 0 0 .15rem rgba($losos-orange, .6);
+        }
+
+        span {
+            display: block;
+            height: 2px;
+            border-radius: 2px;
+            background: $white;
+            transition: transform .25s ease, opacity .25s ease;
+        }
+
+        &[aria-expanded="true"] {
+            span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            span:nth-child(2) { opacity: 0; }
+            span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
         }
     }
 
-    // Menú móvil
-    @include media-breakpoint-down(lg) {
-        .navbar {
-            min-height: 72px;
-        }
-
-        .navbar-brand {
-            margin-left: 0;
-        }
-
+    // ---- Menú desplegado (celular y tablet) ----
+    @include media-breakpoint-down(xl) {
         .navbar-collapse {
-            padding: .5rem 0 1.5rem;
+            padding-bottom: .5rem;
         }
 
         .nav-link {
-            padding: .875rem 0 !important;
             border-bottom: 1px solid rgba($white, .08);
         }
 
         &__cta {
+            display: block;
             width: 100%;
-            height: 40px;
-            margin: 1.25rem 0 0;
+            margin-top: 1.25rem;
+            text-align: center;
         }
     }
 }
