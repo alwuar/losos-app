@@ -30,7 +30,7 @@ class HomeController extends Controller
             ],
             'categories' => $catalog->categories(),
             'services' => $catalog->services(),
-            'brands' => config('losos.brands'),
+            'brands' => $catalog->brands(),
         ]);
     }
 }

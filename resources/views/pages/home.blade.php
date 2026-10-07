@@ -1,6 +1,6 @@
 <x-layouts.app header="transparent">
 
-    <x-sections.hero image="images/home/hero.jpg">
+    <x-sections.hero :image="\App\Models\SiteImage::path('home.hero')">
         <x-slot:title>Donde la confianza se<br class="br-lg"> convierte en construcción.</x-slot:title>
 
         Maquinaria de construcción nueva, de las marcas líderes del mundo, respaldada

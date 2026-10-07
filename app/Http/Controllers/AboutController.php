@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\Catalog;
 use Illuminate\View\View;
 
 class AboutController extends Controller
 {
-    public function __invoke(): View
+    public function __invoke(Catalog $catalog): View
     {
         return view('pages.about', [
-            'brands' => config('losos.brands'),
+            'brands' => $catalog->brands(),
         ]);
     }
 }

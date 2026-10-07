@@ -6,7 +6,7 @@
     <x-ui.section class="about-story">
         <x-sections.split
             title="Nuestra historia"
-            image="images/about/historia.jpg"
+            :image="\App\Models\SiteImage::path('about.history')"
             image-alt="Equipo de Distribuidora Losos"
             reverse
             accent>

@@ -2,21 +2,30 @@
 
 namespace App\Support;
 
-use Illuminate\Support\Arr;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\SiteImage;
 use Illuminate\Support\Collection;
 
 /**
- * Acceso al catálogo (config/catalog.php).
+ * Acceso al catálogo para el sitio público.
  *
- * Punto único para leer categorías, productos y servicios. Cuando el
- * contenido pase a base de datos, solo cambia esta clase.
+ * Lee de la base de datos (lo que se captura en /admin) y entrega arreglos
+ * simples a las vistas, así las plantillas no dependen de los modelos.
  */
 class Catalog
 {
+    /** @var Collection<string, array>|null */
+    protected ?Collection $categories = null;
+
     public function categories(): Collection
     {
-        return collect(config('catalog.categories'))
-            ->map(fn (array $category, string $slug) => ['slug' => $slug, ...$category]);
+        return $this->categories ??= Category::query()
+            ->ordered()
+            ->with('types')
+            ->get()
+            ->mapWithKeys(fn (Category $category) => [$category->slug => $this->categoryData($category)]);
     }
 
     public function category(string $slug): ?array
@@ -24,29 +33,36 @@ class Catalog
         return $this->categories()->get($slug);
     }
 
-    public function defaultCategory(): array
+    public function defaultCategory(): ?array
     {
         return $this->categories()->first();
     }
 
     public function products(?string $category = null, ?string $type = null): Collection
     {
-        return collect(config('catalog.products'))
-            ->when($category, fn (Collection $items) => $items->where('category', $category))
-            ->when($type, fn (Collection $items) => $items->where('type', $type))
-            ->map(fn (array $product) => $this->hydrate($product))
-            ->values();
+        return Product::query()
+            ->published()
+            ->ordered()
+            ->with(['category', 'type', 'images'])
+            ->when($category, fn ($query) => $query->whereRelation('category', 'slug', $category))
+            ->when($type, fn ($query) => $query->whereRelation('type', 'slug', $type))
+            ->get()
+            ->map(fn (Product $product) => $this->productData($product));
     }
 
     /**
-     * Un producto por su slug, dentro de una categoría.
+     * Un producto publicado por su slug, dentro de una categoría.
      */
     public function product(string $category, string $slug): ?array
     {
-        $product = collect(config('catalog.products'))
-            ->first(fn (array $item) => $item['slug'] === $slug && $item['category'] === $category);
+        $product = Product::query()
+            ->published()
+            ->with(['category', 'type', 'images'])
+            ->where('slug', $slug)
+            ->whereRelation('category', 'slug', $category)
+            ->first();
 
-        return $product ? $this->hydrate($product) : null;
+        return $product ? $this->productData($product) : null;
     }
 
     /**
@@ -62,34 +78,13 @@ class Catalog
     }
 
     /**
-     * Completa un producto con valores por defecto y datos derivados.
-     */
-    protected function hydrate(array $product): array
-    {
-        $category = $this->category($product['category']);
-
-        return [
-            'tagline' => null,
-            'description' => null,
-            'gallery' => [],
-            'specs' => [],
-            'highlights' => [],
-            'features' => [],
-            'spec_groups' => [],
-            'brochure' => null,
-            ...$product,
-            'category_name' => $category['name'] ?? $product['category'],
-            'type_label' => Arr::get($category, "types.{$product['type']}", $product['type']),
-            'url' => route('products.show', [$product['category'], $product['slug']]),
-        ];
-    }
-
-    /**
      * Opciones para el select "¿Qué equipo necesitas?" del formulario.
      */
     public function equipmentOptions(): array
     {
-        return collect(config('catalog.products'))
+        return Product::query()
+            ->published()
+            ->ordered()
             ->pluck('name')
             ->unique()
             ->values()
@@ -97,9 +92,78 @@ class Catalog
             ->all();
     }
 
+    public function brands(): array
+    {
+        return Brand::query()
+            ->active()
+            ->ordered()
+            ->get()
+            ->map(fn (Brand $brand) => ['name' => $brand->name, 'logo' => $brand->logo])
+            ->all();
+    }
+
     public function services(): Collection
     {
         return collect(config('catalog.services'))
-            ->map(fn (array $service, string $slug) => ['slug' => $slug, ...$service]);
+            ->map(fn (array $service, string $slug) => [
+                'slug' => $slug,
+                ...$service,
+                'image' => SiteImage::path("services.{$slug}", $service['image'] ?? null),
+            ]);
+    }
+
+    protected function categoryData(Category $category): array
+    {
+        return [
+            'slug' => $category->slug,
+            'name' => $category->name,
+            'label' => $category->label,
+            'card_title' => $category->card_title,
+            'summary' => $category->summary,
+            'excerpt' => $category->excerpt,
+            'description' => $category->description,
+            'image' => $category->image,
+            'benefits' => $category->benefits ?? [],
+            'types' => $category->types->pluck('name', 'slug')->all(),
+        ];
+    }
+
+    protected function productData(Product $product): array
+    {
+        $gallery = $product->images->pluck('path')->all();
+
+        return [
+            'slug' => $product->slug,
+            'name' => $product->name,
+            'brand' => $product->brand,
+            'category' => $product->category->slug,
+            'category_name' => $product->category->name,
+            'type' => $product->type?->slug,
+            'type_label' => $product->type?->name ?? $product->category->name,
+            'tagline' => $product->tagline,
+            'description' => $product->description,
+            'image' => $gallery[0] ?? null,
+            'gallery' => $gallery,
+            'specs' => $this->pairs($product->card_specs),
+            'highlights' => $this->pairs($product->highlights),
+            'features' => array_values(array_filter($product->features ?? [], fn ($item) => filled($item['title'] ?? null))),
+            'spec_groups' => collect($product->spec_groups ?? [])
+                ->filter(fn ($group) => filled($group['title'] ?? null))
+                ->mapWithKeys(fn ($group) => [$group['title'] => $this->pairs($group['rows'] ?? [])])
+                ->all(),
+            'brochure' => $product->brochure,
+            'url' => route('products.show', [$product->category->slug, $product->slug]),
+        ];
+    }
+
+    /**
+     * [['label' => 'Peso', 'value' => '21 t']] → ['Peso' => '21 t']
+     */
+    protected function pairs(?array $rows): array
+    {
+        return collect($rows ?? [])
+            ->filter(fn ($row) => filled($row['label'] ?? null))
+            ->mapWithKeys(fn ($row) => [$row['label'] => $row['value'] ?? ''])
+            ->all();
     }
 }

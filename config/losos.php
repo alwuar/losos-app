@@ -53,17 +53,37 @@ return [
         'contact' => 'Contacto',
     ],
 
-    // Marcas aliadas. Coloca los logos en public/images/brands/
-    'brands' => [
-        ['name' => 'Zoomlion', 'logo' => 'images/brands/zoomlion.png'],
-        ['name' => 'Manitou', 'logo' => 'images/brands/manitou.png'],
-        ['name' => 'Ammann', 'logo' => 'images/brands/ammann.png'],
-        ['name' => 'Case', 'logo' => 'images/brands/case.png'],
-        ['name' => 'Mega', 'logo' => 'images/brands/mega.png'],
-        ['name' => 'Soosan', 'logo' => 'images/brands/soosan.png'],
-        ['name' => 'Eedy', 'logo' => 'images/brands/eedy.png'],
-        ['name' => 'Donaldson', 'logo' => 'images/brands/donaldson.png'],
-        ['name' => 'Lubral', 'logo' => 'images/brands/lubral.png'],
+    /*
+    | Imágenes fijas de las secciones. Se reemplazan desde el panel
+    | (/admin → Imágenes del sitio); "default" es la que se usa mientras no
+    | se haya subido otra.
+    */
+    'site_images' => [
+        'home.hero' => [
+            'label' => 'Inicio · Imagen principal',
+            'help' => 'Fondo del encabezado de Inicio. JPG horizontal de 1920 × 840 px aprox.',
+            'default' => 'images/home/hero.jpg',
+        ],
+        'about.history' => [
+            'label' => 'Quiénes somos · Nuestra historia',
+            'help' => 'Imagen cuadrada, 900 × 900 px aprox.',
+            'default' => 'images/about/historia.jpg',
+        ],
+        'services.renta' => [
+            'label' => 'Servicios · Renta de maquinaria',
+            'help' => 'Horizontal, 900 × 480 px aprox.',
+            'default' => 'images/services/renta.jpg',
+        ],
+        'services.refacciones' => [
+            'label' => 'Servicios · Refacciones y lubricantes',
+            'help' => 'Horizontal, 900 × 480 px aprox.',
+            'default' => 'images/services/refacciones.jpg',
+        ],
+        'services.servicio-tecnico' => [
+            'label' => 'Servicios · Servicio técnico',
+            'help' => 'Horizontal, 900 × 480 px aprox.',
+            'default' => 'images/services/servicio-tecnico.jpg',
+        ],
     ],
 
 ];

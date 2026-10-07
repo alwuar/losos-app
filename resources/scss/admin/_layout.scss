@@ -1,0 +1,146 @@
+// Estructura: barra lateral + contenido
+$admin-sidebar-width: 248px;
+
+.admin {
+    min-height: 100vh;
+    background-color: #f4f6f8;
+    -webkit-font-smoothing: antialiased;
+}
+
+.admin-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: $zindex-fixed;
+    display: flex;
+    flex-direction: column;
+    width: $admin-sidebar-width;
+    padding: 24px 16px;
+    background-color: $losos-navy;
+    color: $white;
+    overflow-y: auto;
+    transition: transform .25s ease;
+
+    &__brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 8px 32px;
+        color: $white;
+
+        .brand-logo img {
+            width: 76px;
+        }
+
+        span {
+            padding: 2px 8px;
+            border-radius: $border-radius-sm;
+            background-color: rgba($white, .1);
+            font-size: .75rem;
+            font-weight: $font-weight-semibold;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+    }
+
+    &__footer {
+        margin-top: auto;
+        padding-top: 16px;
+        border-top: 1px solid rgba($white, .1);
+    }
+
+    @include media-breakpoint-down(lg) {
+        transform: translateX(-100%);
+
+        .admin--sidebar-open & {
+            transform: none;
+            box-shadow: 0 0 40px rgba($black, .3);
+        }
+    }
+}
+
+.admin-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    &__link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        padding: 10px 12px;
+        border: 0;
+        border-radius: $border-radius;
+        background: none;
+        color: rgba($white, .8);
+        font-size: .875rem;
+        font-weight: $font-weight-semibold;
+        text-align: left;
+        transition: background-color .2s ease, color .2s ease;
+
+        .bi {
+            font-size: 1rem;
+        }
+
+        &:hover {
+            background-color: rgba($white, .06);
+            color: $white;
+        }
+
+        &.is-active {
+            background-color: $losos-orange;
+            color: $white;
+        }
+    }
+}
+
+.admin-main {
+    min-height: 100vh;
+
+    @include media-breakpoint-up(lg) {
+        margin-left: $admin-sidebar-width;
+    }
+}
+
+.admin-topbar {
+    position: sticky;
+    top: 0;
+    z-index: $zindex-sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 0 32px;
+    border-bottom: 1px solid #e5e8eb;
+    background-color: $white;
+
+    &__toggle {
+        border: 0;
+        background: none;
+        font-size: 1.5rem;
+        color: $losos-navy;
+
+        @include media-breakpoint-up(lg) {
+            visibility: hidden;
+        }
+    }
+
+    &__user {
+        font-size: .875rem;
+        font-weight: $font-weight-semibold;
+        color: $losos-navy;
+    }
+
+    @include media-breakpoint-down(md) {
+        padding: 0 16px;
+    }
+}
+
+.admin-content {
+    max-width: 1200px;
+    padding: 32px;
+
+    @include media-breakpoint-down(md) {
+        padding: 20px 16px;
+    }
+}

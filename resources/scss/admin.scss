@@ -1,0 +1,13 @@
+// =============================================================================
+// Panel administrativo — usa los mismos tokens y Bootstrap que el sitio
+// =============================================================================
+
+@import 'abstracts/variables';
+@import 'vendors/bootstrap';
+@import 'abstracts/mixins';
+
+@import 'components/forms';
+
+@import 'admin/layout';
+@import 'admin/components';
+@import 'admin/login';

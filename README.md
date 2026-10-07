@@ -56,3 +56,19 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Panel administrativo
+
+El sitio incluye un panel en `/admin` para administrar productos (datos, fotos,
+ficha técnica y PDF), categorías y tipos, marcas e imágenes de las secciones.
+
+Primera instalación:
+
+```bash
+cp .env.example .env          # y configura DB_DATABASE, DB_USERNAME, DB_PASSWORD
+php artisan key:generate
+php artisan migrate --seed    # crea las tablas y carga el contenido inicial
+php artisan storage:link      # hace visibles las imágenes que se suben
+php artisan losos:admin       # crea el usuario para entrar al panel
+npm install && npm run build
+```

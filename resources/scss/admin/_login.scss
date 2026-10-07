@@ -1,0 +1,46 @@
+// Pantalla de inicio de sesión
+.admin-login {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 24px;
+    background-color: $losos-navy;
+
+    &__card {
+        width: 100%;
+        max-width: 400px;
+        padding: 36px 32px;
+        border-radius: $border-radius-lg;
+        background-color: $white;
+        box-shadow: 0 20px 60px rgba($black, .25);
+    }
+
+    &__logo {
+        display: grid;
+        place-items: center;
+        margin: 0 auto 24px;
+        width: 120px;
+        height: 72px;
+        border-radius: $border-radius;
+        background-color: $losos-navy;
+    }
+
+    &__title {
+        margin: 0 0 4px;
+        font-size: 1.375rem;
+        font-weight: $font-weight-bold;
+        color: $losos-navy;
+        text-align: center;
+    }
+
+    &__text {
+        margin: 0 0 24px;
+        font-size: .875rem;
+        color: $losos-gray;
+        text-align: center;
+    }
+
+    .form-field + .form-field {
+        margin-top: 16px;
+    }
+}

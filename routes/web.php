@@ -18,3 +18,5 @@ Route::get('/servicios', ServiceController::class)->name('services');
 
 Route::get('/contacto', [ContactController::class, 'show'])->name('contact');
 Route::post('/contacto', [ContactController::class, 'store'])->name('contact.store');
+
+require __DIR__.'/admin.php';

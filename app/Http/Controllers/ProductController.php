@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         $current = $category
             ? $catalog->category($category) ?? abort(404)
-            : $catalog->defaultCategory();
+            : $catalog->defaultCategory() ?? abort(404);
 
         $type = $request->query('tipo');
 

@@ -4,6 +4,7 @@
     'type' => 'text',
     'id' => null,
     'value' => null,
+    'help' => null,
 ])
 
 @php($id ??= 'field-'.$name)
@@ -17,5 +18,8 @@
         value="{{ old($name, $value) }}"
         {{ $attributes->except('class')->class(['form-control', 'is-invalid' => $errors->has($name)]) }}
     >
+    @if ($help)
+        <div class="form-text">{{ $help }}</div>
+    @endif
     <x-forms.error :name="$name" />
 </div>

@@ -1,20 +1,15 @@
-# Imágenes del sitio
+# Imágenes por defecto del sitio
 
-Mientras una imagen no exista, el sitio muestra un recuadro gris en su lugar
-(en local también aparece la ruta esperada). Basta con subir el archivo con
-el nombre indicado para que aparezca.
+Las imágenes de productos, categorías, marcas y secciones se suben desde el
+panel administrativo (`/admin`) y se guardan en `storage/app/public`
+(visibles en `/storage` después de `php artisan storage:link`).
 
-| Ruta | Dónde se usa |
+Esta carpeta solo guarda las imágenes que trae el sitio de inicio:
+
+| Ruta | Uso |
 | --- | --- |
-| `brand/logo-losos-blanco.svg` | Logo del header y footer |
-| `home/hero.jpg` | Fondo del hero de Inicio |
-| `categories/maquinaria-muevetierra.jpg` | Tarjeta "Maquinaria Muevetierra" |
-| `categories/equipo-industrial.jpg` | Tarjeta "Monta cargas" |
-| `about/historia.jpg` | Quiénes somos → Nuestra historia (cuadrada) |
-| `services/renta.jpg` | Servicios → Renta de maquinaria |
-| `services/refacciones.jpg` | Servicios → Refacciones y lubricantes |
-| `services/servicio-tecnico.jpg` | Servicios → Servicio técnico |
-| `products/ze215e-pro.png` | Tarjetas de producto (PNG con fondo transparente) |
-| `brands/*.png` | Logos de marcas aliadas (ver `config/losos.php`) |
+| `brand/logo-losos.png` | Logo del header, footer y panel |
+| `home/hero.jpg` | Foto principal de Inicio (se puede reemplazar desde el panel) |
+| `categories/*.jpg` | Imágenes iniciales de las categorías |
 
-Las rutas de productos, categorías y servicios se cambian en `config/catalog.php`.
+Mientras falte una imagen, el sitio muestra un recuadro gris en su lugar.
