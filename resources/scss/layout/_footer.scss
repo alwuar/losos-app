@@ -1,0 +1,112 @@
+// =============================================================================
+// Footer (383px de alto a 1280)
+// =============================================================================
+
+.site-footer {
+    min-height: 383px;
+    padding: 47px 0 66px;
+    background-color: $losos-charcoal;
+    color: $losos-footer-text;
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+
+        @include media-breakpoint-up(md) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include media-breakpoint-up(xl) {
+            // Columnas en x = 85, 461, 702 y 999 (diseño)
+            grid-template-columns: 376fr 241fr 297fr 181fr;
+            gap: 0;
+            margin-left: -15px;
+        }
+    }
+
+    &__brand .brand-logo {
+        margin-left: 6px;
+    }
+
+    &__about {
+        max-width: 240px;
+        margin: 22px 0 0;
+        font-size: .75rem;
+        line-height: 20px;
+    }
+
+    .social-links {
+        margin-top: 40px;
+    }
+
+    &__column {
+        padding-top: 4px;
+    }
+
+    &__title {
+        margin: 0 0 33px;
+        font-size: 1rem;
+        font-weight: $font-weight-bold;
+        line-height: 19px;
+        color: $losos-footer-text;
+    }
+
+    &__list {
+        max-width: 165px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: .875rem;
+        line-height: 24px;
+
+        li + li {
+            margin-top: 7px;
+        }
+
+        a {
+            color: $losos-footer-text;
+            transition: color .2s ease;
+
+            &:hover {
+                color: $losos-orange;
+            }
+        }
+    }
+
+    &__bottom {
+        margin: 31px 0 0;
+        font-size: .875rem;
+        line-height: 19px;
+        color: $white;
+        text-align: center;
+    }
+
+    @include media-breakpoint-down(xl) {
+        padding: 3rem 0 2.5rem;
+
+        &__list {
+            max-width: none;
+        }
+    }
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    a {
+        display: inline-flex;
+        font-size: 22px;
+        line-height: 1;
+        color: currentColor;
+        transition: color .2s ease;
+
+        &:hover {
+            color: $losos-orange;
+        }
+    }
+}

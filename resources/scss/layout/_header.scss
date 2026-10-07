@@ -1,0 +1,112 @@
+// =============================================================================
+// Header (98px). Variantes: --solid (navy) y --transparent (sobre el hero)
+// =============================================================================
+
+.site-header {
+    z-index: $zindex-fixed;
+    width: 100%;
+    transition: background-color .25s ease, box-shadow .25s ease;
+
+    .navbar {
+        min-height: $header-height;
+        padding: 0;
+    }
+
+    &--solid {
+        position: sticky;
+        top: 0;
+        background-color: $losos-navy;
+    }
+
+    &--transparent {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        &.is-scrolled {
+            background-color: $losos-navy;
+            box-shadow: 0 2px 12px rgba($black, .18);
+        }
+    }
+
+    .navbar-brand {
+        margin: 0 0 0 9px;
+        padding: 0;
+    }
+
+    .navbar-nav {
+        gap: 0;
+    }
+
+    .nav-link {
+        padding: 0 22px !important;
+        font-size: .875rem;
+        font-weight: $font-weight-bold;
+        line-height: 1;
+        color: $white;
+
+        &:hover {
+            color: $losos-orange;
+        }
+    }
+
+    &__cta {
+        height: 27px;
+        margin-left: 22px;
+        padding: 0 10px;
+        font-size: .875rem;
+        line-height: 1;
+    }
+
+    .navbar-toggler {
+        border: 0;
+        padding: .375rem;
+
+        &:focus {
+            box-shadow: 0 0 0 .15rem rgba($losos-orange, .6);
+        }
+    }
+
+    // Menú móvil
+    @include media-breakpoint-down(lg) {
+        .navbar {
+            min-height: 72px;
+        }
+
+        .navbar-brand {
+            margin-left: 0;
+        }
+
+        .navbar-collapse {
+            padding: .5rem 0 1.5rem;
+        }
+
+        .nav-link {
+            padding: .875rem 0 !important;
+            border-bottom: 1px solid rgba($white, .08);
+        }
+
+        &__cta {
+            width: 100%;
+            height: 40px;
+            margin: 1.25rem 0 0;
+        }
+    }
+}
+
+// Logo (98 × 54 en el diseño)
+.brand-logo {
+    display: inline-block;
+    line-height: 0;
+
+    img {
+        width: 98px;
+        height: auto;
+    }
+
+    @include media-breakpoint-down(lg) {
+        img {
+            width: 76px;
+        }
+    }
+}

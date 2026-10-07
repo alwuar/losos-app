@@ -1,0 +1,50 @@
+// Banda naranja de cierre (<x-sections.cta-banner>) — 250px de alto a 1280
+.cta-banner {
+    display: flex;
+    align-items: center;
+    min-height: 250px;
+    padding: 3rem 0;
+    background-color: $losos-orange;
+    color: $white;
+
+    > .container {
+        padding-left: calc(#{$grid-gutter-width * .5} + 1px);
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 1.875rem;   // 30px
+        font-weight: $font-weight-bold;
+        line-height: 39px;
+        color: $white;
+        text-transform: uppercase;
+    }
+
+    &__text {
+        margin: 3px 0 0;
+        font-size: 1.25rem;    // 20px
+        line-height: 24px;
+    }
+
+    &--center {
+        text-align: center;
+    }
+
+    &--compact {
+        min-height: 216px;
+        padding: 58px 0 48px;
+    }
+
+    @include media-breakpoint-down(md) {
+        min-height: 0;
+
+        &__title {
+            font-size: 1.5rem;
+            line-height: 1.25;
+        }
+
+        &__text {
+            font-size: 1rem;
+        }
+    }
+}

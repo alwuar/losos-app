@@ -1,0 +1,64 @@
+// =============================================================================
+// Línea de producto: imagen + panel naranja (<x-cards.category>)
+// 528 × 327 a 1280: imagen 259px + panel 269px
+// =============================================================================
+
+.category-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+    background-color: $losos-orange;
+    color: $white;
+
+    @include media-breakpoint-up(sm) {
+        grid-template-columns: 49% 51%;
+        min-height: 327px;
+    }
+
+    &__media {
+        --media-ratio: 4 / 3;
+
+        @include media-breakpoint-up(sm) {
+            height: 100%;
+            aspect-ratio: auto;
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 94px 46px 2rem;
+    }
+
+    &__eyebrow {
+        margin: 0 0 15px;
+        font-size: .625rem;
+        line-height: 14px;
+        text-transform: uppercase;
+    }
+
+    &__title {
+        margin: 0 0 6px;
+        font-size: .875rem;
+        font-weight: $font-weight-bold;
+        line-height: 19px;
+        color: $white;
+    }
+
+    &__text {
+        margin: 0;
+        font-size: .75rem;
+        line-height: 16px;
+    }
+
+    &__link {
+        margin-top: 17px;
+    }
+
+    @include media-breakpoint-down(sm) {
+        &__body {
+            padding: 2rem;
+        }
+    }
+}

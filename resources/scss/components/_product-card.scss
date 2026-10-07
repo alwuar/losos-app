@@ -1,0 +1,61 @@
+// Tarjeta de producto (<x-cards.product>) — 347px de ancho, imagen de 140px
+.product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background-color: $white;
+    box-shadow: $card-shadow;
+    color: $black;
+
+    &__media {
+        --media-ratio: auto;
+        height: 140px;
+        aspect-ratio: auto;
+        background-color: #f3f3f3;
+    }
+
+    &__body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 31px 26px 22px;
+    }
+
+    &__title {
+        margin: 0 0 13px;
+        font-size: 1.125rem;
+        font-weight: $font-weight-bold;
+        line-height: 24px;
+        color: $black;
+    }
+
+    &__specs {
+        margin: 0 0 24px;
+        font-size: .75rem;
+        line-height: 23px;
+
+        dt,
+        dd {
+            display: inline;
+            margin: 0;
+        }
+
+        dt {
+            font-weight: $font-weight-normal;
+        }
+
+        dd {
+            font-weight: $font-weight-bold;
+        }
+    }
+
+    &__action {
+        width: 100%;
+        height: 26px;
+        margin-top: auto;
+        --bs-btn-padding-y: 0;
+        --bs-btn-font-size: .75rem;
+        --bs-btn-border-radius: #{$border-radius};
+    }
+}

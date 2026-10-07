@@ -1,0 +1,35 @@
+// =============================================================================
+// Servicios — fondo gris claro y bloques alternados
+// =============================================================================
+
+.page--services {
+    background-color: $losos-surface;
+}
+
+.service-block {
+    padding: 75px 0;
+    color: $losos-navy;
+
+    &--first {
+        padding-top: 49px;
+        padding-bottom: 73px;
+    }
+
+    &.section--navy {
+        padding: 61px 0;
+        color: $white;
+    }
+
+    &--last {
+        padding-bottom: 76px;
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .service-block,
+    .service-block--first,
+    .service-block.section--navy,
+    .service-block--last {
+        padding: 3rem 0;
+    }
+}

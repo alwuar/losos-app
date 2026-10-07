@@ -1,0 +1,41 @@
+// =============================================================================
+// Botones (<x-ui.button>) — extienden los .btn de Bootstrap
+// =============================================================================
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.btn-primary {
+    --bs-btn-color: #{$white};
+    --bs-btn-hover-color: #{$white};
+    --bs-btn-active-color: #{$white};
+    --bs-btn-disabled-color: #{$white};
+    --bs-btn-hover-bg: #{darken($losos-orange, 6%)};
+    --bs-btn-hover-border-color: #{darken($losos-orange, 6%)};
+}
+
+.btn-outline-light {
+    --bs-btn-color: #{$white};
+    --bs-btn-border-color: #{$white};
+    --bs-btn-hover-color: #{$losos-navy};
+    --bs-btn-hover-bg: #{$white};
+}
+
+.btn-outline-primary {
+    --bs-btn-color: #{$losos-orange};
+    --bs-btn-hover-color: #{$white};
+}
+
+// Botones del hero (124 × 38)
+.btn-lg {
+    --bs-btn-padding-y: 0;
+    --bs-btn-padding-x: 15px;
+    --bs-btn-font-size: 1rem;
+    --bs-btn-border-radius: #{$border-radius-sm};
+    min-width: 124px;
+    height: 38px;
+}

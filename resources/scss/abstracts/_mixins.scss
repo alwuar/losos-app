@@ -1,0 +1,30 @@
+// =============================================================================
+// Mixins propios (requieren los helpers de Bootstrap ya cargados)
+// =============================================================================
+
+// Tarjeta blanca con la sombra suave del diseño
+@mixin card-surface($radius: $border-radius-lg) {
+    background-color: $white;
+    border-radius: $radius;
+    box-shadow: $card-shadow;
+}
+
+// Fila con scroll horizontal que se "sale" del contenedor hacia la derecha
+// (como en el diseño: marcas y beneficios continúan fuera de pantalla).
+@mixin bleed-right-scroller {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    // Distancia entre el borde del contenido y el borde de la ventana
+    margin-right: calc(-1 * (var(--container-pad) + max(0px, (100vw - #{$container-max-width}) / 2)));
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    > * {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+    }
+}

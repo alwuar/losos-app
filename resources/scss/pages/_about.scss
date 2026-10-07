@@ -1,0 +1,47 @@
+// =============================================================================
+// Quiénes somos
+// =============================================================================
+
+.about-story {
+    padding-top: 23px;
+
+    .split__media {
+        --media-ratio: 438 / 436;
+    }
+
+    .split__content {
+        align-self: start;
+        margin-top: 88px;
+    }
+}
+
+.about-values {
+    padding-top: 112px;
+
+    &__grid {
+        display: grid;
+        gap: 32px;
+        grid-template-columns: 1fr;
+
+        @include media-breakpoint-up(md) {
+            grid-template-columns: repeat(2, 1fr);
+            margin-right: 6px;
+        }
+    }
+}
+
+.about-brands {
+    padding: 137px 0 158px;
+
+    .section-heading {
+        margin-bottom: 63px;
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .about-story { padding-top: 0; }
+    .about-story .split__content { margin-top: 0; }
+    .about-values { padding-top: 3.5rem; }
+    .about-brands { padding: 4rem 0; }
+    .about-brands .section-heading { margin-bottom: 2.5rem; }
+}

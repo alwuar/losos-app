@@ -1,0 +1,60 @@
+// =============================================================================
+// Contacto
+// =============================================================================
+
+.contact-page {
+    &__hero.page-hero {
+        min-height: 0;
+        padding: 87px 0 84px;
+    }
+
+    &__layout {
+        display: grid;
+        gap: 3rem;
+
+        @include media-breakpoint-up(lg) {
+            grid-template-columns: minmax(0, 413fr) minmax(0, 660fr);
+            gap: 0;
+            align-items: start;
+        }
+    }
+
+    &__details {
+        margin-top: 20px;
+    }
+
+    &__form .row {
+        --bs-gutter-x: 18px;
+        --bs-gutter-y: 22px;
+    }
+
+    .row > .contact-page__submit {
+        margin-top: 25px;
+    }
+}
+
+.contact-locations {
+    padding: 103px 0 127px;
+
+    .section-heading {
+        margin-bottom: 92px;
+    }
+
+    &__grid {
+        display: grid;
+        gap: 32px;
+        grid-template-columns: 1fr;
+
+        @include media-breakpoint-up(md) {
+            grid-template-columns: repeat(2, 1fr);
+            margin: 0 3px;
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .contact-page__hero.page-hero { padding: 48px 0 40px; }
+    .contact-page__details { margin-top: 0; }
+    .contact-locations { padding: 4rem 0; }
+    .contact-locations .section-heading { margin-bottom: 2.5rem; }
+}

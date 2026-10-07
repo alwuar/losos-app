@@ -1,0 +1,58 @@
+// =============================================================================
+// Distribuidora Losos — hoja de estilos principal
+//
+// Orden:
+//   1. abstracts   → variables y overrides (antes de Bootstrap)
+//   2. vendors     → Bootstrap
+//   3. abstracts   → mixins propios (usan helpers de Bootstrap)
+//   4. base        → estilos globales
+//   5. layout      → header, footer, secciones
+//   6. components  → una partial por componente Blade
+//   7. pages       → ajustes específicos de cada página
+// =============================================================================
+
+// 1. Abstracts
+@import 'abstracts/variables';
+
+// 2. Vendors
+@import 'vendors/bootstrap';
+
+// 3. Mixins
+@import 'abstracts/mixins';
+
+// 4. Base
+@import 'base/root';
+@import 'base/typography';
+
+// 5. Layout
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/section';
+
+// 6. Components
+@import 'components/buttons';
+@import 'components/eyebrow';
+@import 'components/section-heading';
+@import 'components/media';
+@import 'components/link-arrow';
+@import 'components/hero';
+@import 'components/page-hero';
+@import 'components/feature-card';
+@import 'components/category-card';
+@import 'components/category-tab';
+@import 'components/info-card';
+@import 'components/product-card';
+@import 'components/filter-pills';
+@import 'components/check-list';
+@import 'components/brands';
+@import 'components/split';
+@import 'components/cta-banner';
+@import 'components/forms';
+@import 'components/contact-details';
+
+// 7. Pages
+@import 'pages/home';
+@import 'pages/about';
+@import 'pages/products';
+@import 'pages/services';
+@import 'pages/contact';

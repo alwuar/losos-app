@@ -1,0 +1,97 @@
+// =============================================================================
+// Productos
+// =============================================================================
+
+.products-intro {
+    padding: 61px 0 81px;
+
+    &__lead {
+        max-width: 730px;
+        margin: 0 0 52px;
+        font-size: 1rem;
+        line-height: 18px;
+        color: $losos-navy;
+    }
+
+    &__tabs {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: 1fr;
+
+        @include media-breakpoint-up(md) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    &__benefits {
+        display: grid;
+        gap: 2rem;
+        margin-top: 134px;
+        padding-left: 3px;
+
+        @include media-breakpoint-up(lg) {
+            grid-template-columns: minmax(0, 553fr) minmax(0, 527fr);
+            gap: 0;
+            align-items: start;
+        }
+    }
+
+    &__title {
+        margin: 16px 0 8px;
+        font-size: 1.625rem;
+        font-weight: $font-weight-bold;
+        line-height: 35px;
+        color: $black;
+    }
+
+    &__text {
+        max-width: 490px;
+        margin: 0;
+        font-size: 1rem;
+        line-height: 18px;
+        color: $losos-navy;
+    }
+
+    .check-list {
+        margin-top: 37px;
+    }
+}
+
+.products-catalog {
+    padding: 61px 0 148px;
+
+    .filter-pills {
+        margin-bottom: 70px;
+    }
+
+    &__grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr;
+
+        @include media-breakpoint-up(sm) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include media-breakpoint-up(lg) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+}
+
+.products-empty {
+    padding: 3rem 1rem;
+    border: 1px dashed #e3e6e8;
+    border-radius: $border-radius-lg;
+    color: $losos-navy;
+    text-align: center;
+}
+
+@include media-breakpoint-down(lg) {
+    .products-intro { padding: 3rem 0 4rem; }
+    .products-intro__lead { margin-bottom: 2rem; }
+    .products-intro__benefits { margin-top: 4rem; }
+    .products-intro .check-list { margin-top: 0; }
+    .products-catalog { padding: 3rem 0 4rem; }
+    .products-catalog .filter-pills { margin-bottom: 2rem; }
+}

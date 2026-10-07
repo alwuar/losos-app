@@ -1,0 +1,64 @@
+// =============================================================================
+// Inicio — espaciados verticales del diseño (1280px)
+// =============================================================================
+
+.home-brands {
+    padding-top: 97px;
+}
+
+.home-why {
+    padding-top: 104px;
+
+    .section-heading {
+        margin-bottom: 78px;
+    }
+}
+
+.home-products {
+    padding-top: 107px;
+
+    .section-heading {
+        margin-bottom: 56px;
+    }
+
+    &__grid {
+        display: grid;
+        gap: 23px;
+        grid-template-columns: 1fr;
+
+        @include media-breakpoint-up(lg) {
+            grid-template-columns: repeat(2, 1fr);
+            margin-left: -1px;
+            margin-right: 2px;
+        }
+    }
+}
+
+.home-services {
+    padding: 147px 0 160px;
+
+    .section-heading {
+        margin-bottom: 79px;
+    }
+
+    .feature-row {
+        @include media-breakpoint-up(xl) {
+            padding-left: 41px;
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .home-brands   { padding-top: 3.5rem; }
+    .home-why      { padding-top: 4rem; }
+    .home-products { padding-top: 4rem; }
+    .home-services { padding: 4rem 0; }
+
+    .home-why,
+    .home-products,
+    .home-services {
+        .section-heading {
+            margin-bottom: 2.5rem;
+        }
+    }
+}

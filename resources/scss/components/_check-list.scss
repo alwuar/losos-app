@@ -1,0 +1,26 @@
+// Lista con palomitas naranjas (<x-ui.check-list>) — 18px, paso de 52px
+.check-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 1.125rem;
+        font-weight: $font-weight-bold;
+        line-height: 24px;
+        color: $losos-navy;
+
+        + li {
+            margin-top: 28px;
+        }
+    }
+
+    .bi {
+        width: 16px;
+        font-size: 1.125rem;
+        color: $losos-orange-dark;
+    }
+}

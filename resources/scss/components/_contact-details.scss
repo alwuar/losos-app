@@ -1,0 +1,66 @@
+// Datos de contacto (<x-contact.details>) — 16px, grupos cada 72px
+.contact-details {
+    @include media-breakpoint-up(lg) {
+        padding-left: 92px;
+    }
+
+    &__item {
+        max-width: 210px;
+    }
+
+    &__item + &__item {
+        margin-top: 18px;
+    }
+
+    &__label {
+        margin: 0 0 5px;
+        font-size: 1rem;
+        font-weight: $font-weight-bold;
+        line-height: 22px;
+        color: $losos-navy;
+    }
+
+    &__value {
+        margin: 0;
+        font-size: 1rem;
+        font-style: normal;
+        line-height: 27px;
+        color: $losos-ink;
+
+        a {
+            color: inherit;
+
+            &:hover {
+                color: $losos-orange;
+            }
+        }
+    }
+
+    &__social {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 44px 0 0 -32px;
+        font-size: 1rem;
+        font-weight: $font-weight-bold;
+        letter-spacing: .15em;
+        color: $losos-navy;
+
+        .social-links {
+            gap: 14px;
+
+            a {
+                font-size: 24px;
+                color: $losos-navy;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(lg) {
+        padding-left: 0;
+
+        &__social {
+            margin-left: 0;
+        }
+    }
+}

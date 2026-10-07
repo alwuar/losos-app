@@ -1,0 +1,29 @@
+// Enlace con flecha ("Ver catálogo →") — 12px bold
+.link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .75rem;
+    font-weight: $font-weight-bold;
+    line-height: 16px;
+    color: $losos-orange;
+
+    .bi {
+        font-size: 1rem;
+        line-height: 1;
+        transition: transform .2s ease;
+    }
+
+    &:hover {
+        color: darken($losos-orange, 8%);
+
+        .bi {
+            transform: translateX(3px);
+        }
+    }
+
+    &--light,
+    &--light:hover {
+        color: $white;
+    }
+}

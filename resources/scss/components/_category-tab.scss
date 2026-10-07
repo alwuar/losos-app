@@ -1,0 +1,45 @@
+// Selector de categoría en Productos (<x-cards.category-tab>) — 526 × 103
+.category-tab {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    height: 100%;
+    min-height: 103px;
+    padding: 17px 28px 16px;
+    @include card-surface(10px);
+    color: $losos-ink;
+    transition: transform .2s ease;
+
+    &:hover {
+        color: $losos-ink;
+        transform: translateY(-2px);
+    }
+
+    &__title {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1.125rem;
+        font-weight: $font-weight-bold;
+        line-height: 24px;
+    }
+
+    &__text {
+        display: block;
+        font-size: .875rem;
+        line-height: 19px;
+    }
+
+    &__badge {
+        flex-shrink: 0;
+        align-self: center;
+        height: 24px;
+        padding: 0 11px;
+        background-color: $losos-orange;
+        color: $white;
+        font-size: .75rem;
+        font-weight: $font-weight-bold;
+        line-height: 24px;
+        text-transform: uppercase;
+    }
+}

@@ -1,0 +1,81 @@
+// =============================================================================
+// Hero de inicio (<x-sections.hero>) — 561px de alto a 1280
+// =============================================================================
+
+.hero {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    min-height: 561px;
+    padding: 169px 0 60px;
+    background-color: $losos-navy;
+    color: $white;
+    isolation: isolate;
+    overflow: hidden;
+
+    &__bg {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 57%;
+        }
+    }
+
+    &__content {
+        margin-inline: auto;
+        text-align: center;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 3.125rem;   // 50px
+        font-weight: $font-weight-bold;
+        line-height: 57px;
+        color: $white;
+    }
+
+    &__text {
+        max-width: 610px;
+        margin: 8px auto 0;
+        font-size: 1rem;
+        line-height: 18px;
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 31px;
+        margin-top: 26px;
+    }
+
+    @include media-breakpoint-down(lg) {
+        min-height: 0;
+        padding: 140px 0 72px;
+
+        &__title {
+            font-size: 2.25rem;
+            line-height: 1.15;
+        }
+
+        &__actions {
+            gap: 1rem;
+        }
+    }
+}
+
+// En pantallas chicas el texto cubre la foto: se oscurece un poco para que sea legible
+@include media-breakpoint-down(lg) {
+    .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: rgba($black, .38);
+    }
+}

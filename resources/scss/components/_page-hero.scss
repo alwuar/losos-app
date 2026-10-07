@@ -1,0 +1,27 @@
+// Título de las páginas internas (<x-sections.page-hero>): 50px navy, centrado
+.page-hero {
+    display: flex;
+    align-items: center;
+    min-height: $page-hero-height;
+    padding: 20px 0 26px;
+    text-align: center;
+
+    &__title {
+        width: 100%;
+        margin: 0;
+        font-size: 3.125rem;
+        font-weight: $font-weight-bold;
+        line-height: 57px;
+        color: $losos-navy;
+    }
+
+    @include media-breakpoint-down(lg) {
+        min-height: 0;
+        padding: 48px 0 40px;
+
+        &__title {
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+// =============================================================================
+// Sección genérica (<x-ui.section>). El espaciado vertical de cada sección
+// se define en pages/_*.scss con las medidas del diseño.
+// =============================================================================
+
+.section {
+    position: relative;
+
+    &--surface {
+        background-color: $losos-surface;
+    }
+
+    &--navy {
+        background-color: $losos-navy;
+        color: $white;
+    }
+}

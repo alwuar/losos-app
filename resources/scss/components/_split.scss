@@ -1,0 +1,84 @@
+// =============================================================================
+// Imagen (438px) + contenido, separados 100px (<x-sections.split>)
+// Se usa en "Nuestra historia" y en cada servicio.
+// =============================================================================
+
+.split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: minmax(0, 438fr) minmax(0, 542fr);
+        gap: 100px;
+
+        &--reverse {
+            grid-template-columns: minmax(0, 534fr) minmax(0, 438fr);
+            padding-right: 8px;
+
+            .split__media {
+                order: 2;
+            }
+        }
+    }
+
+    &__media {
+        --media-ratio: 438 / 232;
+    }
+
+    &__eyebrow {
+        margin: 0 0 14px;
+        font-size: .875rem;
+        font-weight: $font-weight-bold;
+        line-height: 19px;
+        text-transform: uppercase;
+    }
+
+    &__title {
+        margin: 0 0 20px;
+        font-size: 1.625rem;
+        font-weight: $font-weight-bold;
+        line-height: 35px;
+        color: inherit;
+    }
+
+    &__body {
+        max-width: 560px;
+        font-size: .75rem;
+        line-height: 16px;
+
+        p + p {
+            margin-top: 16px;
+        }
+    }
+
+    &__actions {
+        margin-top: 9px;
+    }
+
+    // Variante "Nuestra historia": título naranja en mayúsculas
+    &--accent &__title {
+        color: $losos-orange;
+        text-transform: uppercase;
+    }
+
+    &--accent &__body {
+        max-width: 535px;
+        color: $losos-navy;
+    }
+}
+
+// Etiqueta de marca dentro de un bloque (ej. LUBRAL)
+.brand-tag {
+    display: inline-flex;
+    align-items: center;
+    height: 26px;
+    margin-top: 28px;
+    padding: 0 6px;
+    background-color: $white;
+    color: $black;
+    font-size: .875rem;
+    font-weight: $font-weight-bolder;
+    text-transform: uppercase;
+}

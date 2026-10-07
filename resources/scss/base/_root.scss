@@ -1,0 +1,42 @@
+:root {
+    --losos-orange: #{$losos-orange};
+    --losos-navy: #{$losos-navy};
+    --losos-header-height: #{$header-height};
+
+    // Margen lateral del contenido en escritorio: $container-padding-desktop
+    --container-pad: 20px;
+
+    @include media-breakpoint-up(md) { --container-pad: 32px; }
+    @include media-breakpoint-up(lg) { --container-pad: 48px; }
+    @include media-breakpoint-up(xl) { --container-pad: #{$container-padding-desktop}; }
+}
+
+// Contenedor fluido: el contenido ocupa todo el ancho menos el margen lateral
+.container {
+    max-width: $container-max-width;
+    padding-inline: var(--container-pad);
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: $header-height;
+}
+
+html,
+body {
+    overflow-x: clip;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+address {
+    margin-bottom: 0;
+}

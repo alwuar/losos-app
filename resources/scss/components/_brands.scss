@@ -1,0 +1,96 @@
+// =============================================================================
+// Marcas: tira de logos (inicio) y filas de nombres (quiénes somos)
+// =============================================================================
+
+.brand-strip {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: 259px minmax(0, 1fr);
+        gap: 0;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 1.875rem;   // 30px
+        font-weight: $font-weight-normal;
+        line-height: 33px;
+        color: $losos-gray;
+        text-transform: uppercase;
+    }
+
+    &__logos {
+        @include bleed-right-scroller;
+        gap: 36px;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-left: 0;
+        list-style: none;
+    }
+
+    &__logo {
+        width: 125px;
+
+        .media {
+            --media-ratio: 125 / 54;
+            background-color: $losos-placeholder;
+        }
+    }
+
+    &__name {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: .75rem;
+        font-weight: $font-weight-bold;
+        color: rgba($black, .35);
+    }
+}
+
+.brand-grid {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &__row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem 92px;
+
+        + .brand-grid__row {
+            margin-top: 53px;
+        }
+    }
+
+    &__item {
+        font-size: 1.625rem;   // 26px
+        font-weight: $font-weight-bold;
+        line-height: 35px;
+        color: $black;
+        text-transform: uppercase;
+
+        img {
+            max-height: 35px;
+            width: auto;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        &__row {
+            gap: 1rem 2rem;
+
+            + .brand-grid__row {
+                margin-top: 1rem;
+            }
+        }
+
+        &__item {
+            font-size: 1.125rem;
+        }
+    }
+}
