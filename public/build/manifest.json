@@ -1,0 +1,155 @@
+{
+  "_bootstrap-icons-X2_YPLiZ.css": {
+    "file": "assets/bootstrap-icons-X2_YPLiZ.css",
+    "src": "_bootstrap-icons-X2_YPLiZ.css"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-300-normal.woff": {
+    "file": "assets/open-sans-latin-300-normal-BKswzCSr.woff",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-300-normal.woff"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-300-normal.woff2": {
+    "file": "assets/open-sans-latin-300-normal-D5gIFPXQ.woff2",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-300-normal.woff2"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-400-normal.woff": {
+    "file": "assets/open-sans-latin-400-normal-DKniycaP.woff",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-400-normal.woff"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-400-normal.woff2": {
+    "file": "assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-400-normal.woff2"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-500-normal.woff": {
+    "file": "assets/open-sans-latin-500-normal-BxcNt415.woff",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-500-normal.woff"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-500-normal.woff2": {
+    "file": "assets/open-sans-latin-500-normal-C0rntwkW.woff2",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-500-normal.woff2"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-600-normal.woff": {
+    "file": "assets/open-sans-latin-600-normal-C3dWW5mx.woff",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-600-normal.woff"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-600-normal.woff2": {
+    "file": "assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-600-normal.woff2"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-700-normal.woff": {
+    "file": "assets/open-sans-latin-700-normal-CZCQA30i.woff",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-700-normal.woff"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-700-normal.woff2": {
+    "file": "assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-700-normal.woff2"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-800-normal.woff": {
+    "file": "assets/open-sans-latin-800-normal-w4vykUBk.woff",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-800-normal.woff"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-800-normal.woff2": {
+    "file": "assets/open-sans-latin-800-normal-C0t39IfQ.woff2",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-800-normal.woff2"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-ext-400-normal.woff": {
+    "file": "assets/open-sans-latin-ext-400-normal-BfzJ9CTS.woff",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-ext-400-normal.woff"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-ext-400-normal.woff2": {
+    "file": "assets/open-sans-latin-ext-400-normal-URAvo6nN.woff2",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-ext-400-normal.woff2"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-ext-700-normal.woff": {
+    "file": "assets/open-sans-latin-ext-700-normal-IE4yTLg1.woff",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-ext-700-normal.woff"
+  },
+  "node_modules/@fontsource/open-sans/files/open-sans-latin-ext-700-normal.woff2": {
+    "file": "assets/open-sans-latin-ext-700-normal-DatbY7Hl.woff2",
+    "src": "node_modules/@fontsource/open-sans/files/open-sans-latin-ext-700-normal.woff2"
+  },
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
+    "file": "assets/bootstrap-icons-BeopsB42.woff",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
+  },
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
+    "file": "assets/bootstrap-icons-mSm7cUeB.woff2",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
+  },
+  "resources/js/admin.js": {
+    "file": "assets/admin-QKmktqs1.js",
+    "name": "admin",
+    "src": "resources/js/admin.js",
+    "isEntry": true,
+    "css": [
+      "assets/bootstrap-icons-X2_YPLiZ.css"
+    ],
+    "assets": [
+      "assets/open-sans-latin-300-normal-D5gIFPXQ.woff2",
+      "assets/open-sans-latin-300-normal-BKswzCSr.woff",
+      "assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "assets/open-sans-latin-400-normal-DKniycaP.woff",
+      "assets/open-sans-latin-500-normal-C0rntwkW.woff2",
+      "assets/open-sans-latin-500-normal-BxcNt415.woff",
+      "assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "assets/open-sans-latin-600-normal-C3dWW5mx.woff",
+      "assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "assets/open-sans-latin-700-normal-CZCQA30i.woff",
+      "assets/open-sans-latin-800-normal-C0t39IfQ.woff2",
+      "assets/open-sans-latin-800-normal-w4vykUBk.woff",
+      "assets/open-sans-latin-ext-400-normal-URAvo6nN.woff2",
+      "assets/open-sans-latin-ext-400-normal-BfzJ9CTS.woff",
+      "assets/open-sans-latin-ext-700-normal-DatbY7Hl.woff2",
+      "assets/open-sans-latin-ext-700-normal-IE4yTLg1.woff",
+      "assets/bootstrap-icons-mSm7cUeB.woff2",
+      "assets/bootstrap-icons-BeopsB42.woff"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-CoavHUSe.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-fOJvfYOR.css",
+      "assets/bootstrap-icons-X2_YPLiZ.css"
+    ],
+    "assets": [
+      "assets/open-sans-latin-300-normal-D5gIFPXQ.woff2",
+      "assets/open-sans-latin-300-normal-BKswzCSr.woff",
+      "assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "assets/open-sans-latin-400-normal-DKniycaP.woff",
+      "assets/open-sans-latin-500-normal-C0rntwkW.woff2",
+      "assets/open-sans-latin-500-normal-BxcNt415.woff",
+      "assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "assets/open-sans-latin-600-normal-C3dWW5mx.woff",
+      "assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "assets/open-sans-latin-700-normal-CZCQA30i.woff",
+      "assets/open-sans-latin-800-normal-C0t39IfQ.woff2",
+      "assets/open-sans-latin-800-normal-w4vykUBk.woff",
+      "assets/open-sans-latin-ext-400-normal-URAvo6nN.woff2",
+      "assets/open-sans-latin-ext-400-normal-BfzJ9CTS.woff",
+      "assets/open-sans-latin-ext-700-normal-DatbY7Hl.woff2",
+      "assets/open-sans-latin-ext-700-normal-IE4yTLg1.woff",
+      "assets/bootstrap-icons-mSm7cUeB.woff2",
+      "assets/bootstrap-icons-BeopsB42.woff"
+    ]
+  },
+  "resources/scss/admin.scss": {
+    "file": "assets/admin-Cap2ALQu.css",
+    "name": "admin",
+    "names": [
+      "admin.css"
+    ],
+    "src": "resources/scss/admin.scss",
+    "isEntry": true
+  },
+  "resources/scss/app.scss": {
+    "file": "assets/app-D6QmlBRx.css",
+    "name": "app",
+    "names": [
+      "app.css"
+    ],
+    "src": "resources/scss/app.scss",
+    "isEntry": true
+  }
+}
