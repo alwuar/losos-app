@@ -25,7 +25,7 @@ jobs:
     timeout-minutes: 20
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: PHP 8.3
         uses: shivammathur/setup-php@v2
@@ -38,7 +38,7 @@ jobs:
         run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction --no-progress
 
       - name: Node 22
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "22"
           cache: npm
@@ -57,7 +57,10 @@ jobs:
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p "$SSH_PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          if ! ssh-keyscan -T 15 -p "$SSH_PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null; then
+            echo "::error::No se pudo conectar por SSH al servidor (revisa SSH_HOST y SSH_PORT, o que el firewall permita SSH desde fuera)"
+            exit 1
+          fi
           cat > ~/.ssh/config <<EOF
           Host deploy-target
             HostName $SSH_HOST
