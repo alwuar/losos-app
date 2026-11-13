@@ -71,13 +71,41 @@ jobs:
             ServerAliveInterval 30
           EOF
 
+      - name: Verificar carpeta destino (protección)
+        env:
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        # Se niega a desplegar si DEPLOY_PATH es el home de la cuenta, está fuera de él,
+        # o es una carpeta con contenido que no fue creada por este despliegue.
+        run: |
+          ssh deploy-target "DEPLOY_PATH='$DEPLOY_PATH' bash -s" <<'EOF'
+          set -eu
+          T="${DEPLOY_PATH%/}"
+          case "$T" in
+            ""|"/"|"$HOME") echo "::error::DEPLOY_PATH ($T) no puede ser el home de la cuenta. Usa una subcarpeta, p. ej. $HOME/losos"; exit 1 ;;
+            "$HOME"/*/*|"$HOME"/*) ;;
+            *) echo "::error::DEPLOY_PATH ($T) debe estar dentro de $HOME"; exit 1 ;;
+          esac
+          mkdir -p "$T"
+          if [ "$(cd "$T" && pwd -P)" = "$(cd "$HOME" && pwd -P)" ]; then
+            echo "::error::DEPLOY_PATH apunta al home de la cuenta"; exit 1
+          fi
+          if [ ! -f "$T/.deploy-target" ]; then
+            extra=$(ls -A "$T" | grep -vx '.env' || true)
+            if [ -n "$extra" ]; then
+              echo "::error::$T ya tiene archivos y no es una carpeta de despliegue. No se toca."
+              exit 1
+            fi
+            touch "$T/.deploy-target"
+          fi
+          echo "Destino OK: $T"
+          EOF
+
       - name: Modo mantenimiento
         env:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
           PHP_BIN: ${{ vars.PHP_BIN }}
-        # En el primer despliegue todavía no existe remote.sh: se omite sin error.
         run: |
-          ssh deploy-target "mkdir -p '$DEPLOY_PATH' && cd '$DEPLOY_PATH' && \
+          ssh deploy-target "cd '$DEPLOY_PATH' && \
             if [ -f deploy/remote.sh ]; then PHP_BIN='$PHP_BIN' bash deploy/remote.sh down; fi"
 
       - name: Subir archivos (rsync)
@@ -90,6 +118,7 @@ jobs:
             --exclude='/node_modules/' \
             --exclude='/tests/' \
             --exclude='/.env' \
+            --exclude='/.deploy-target' \
             --exclude='/storage/' \
             --exclude='/public/storage' \
             --exclude='/bootstrap/cache/*.php' \

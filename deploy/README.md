@@ -109,7 +109,7 @@ Repo → **Settings → Environments** → crea `production` (y `staging` para l
 | `SSH_PORT` | `2222` |
 | `SSH_USER` | usuario de cPanel |
 | `SSH_KEY` | contenido completo de `~/.ssh/losos_prod` (la llave **privada**) |
-| `DEPLOY_PATH` | `/home/USUARIO/losos` (ruta absoluta) |
+| `DEPLOY_PATH` | `/home/USUARIO/losos` (ruta absoluta de una **subcarpeta**; nunca el home `/home/USUARIO`. El workflow se niega a desplegar si apunta al home o a una carpeta con otros archivos) |
 
 **Variables** (opcionales)
 
