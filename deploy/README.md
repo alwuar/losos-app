@@ -89,13 +89,21 @@ ln -s ~/losos/public public_html
 
 (Para un subdominio o dominio adicional basta con poner su raíz en `losos/public` desde **Dominios**.)
 
-### 5. Cron del scheduler (opcional, si la app usa tareas programadas o colas)
+### 5. Cron del scheduler (recomendado)
+
+Reintenta cada 10 minutos los mensajes de contacto que no llegaron a Nerby (`php artisan losos:prospectos`).
+Sin el cron también se reintentan, pero solo cuando llega otro formulario.
 
 cPanel → **Trabajos de Cron**, cada minuto:
 
 ```
 * * * * * /opt/cpanel/ea-php83/root/usr/bin/php ~/losos/artisan schedule:run >> /dev/null 2>&1
 ```
+
+### 5.1 Prospectos a Nerby
+
+En el `.env` del servidor, `NERBY_PROSPECTOS_URL=` con la dirección de Nerby → Ventas → Recibir de mi sitio.
+Cada formulario de contacto se guarda en `contact_messages` y se manda a esa dirección; sin la variable solo se guarda.
 
 ### 6. Secrets en GitHub
 
