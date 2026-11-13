@@ -1,0 +1,106 @@
+name: Deploy
+
+# Despliega en el cPanel del entorno elegido.
+#  - push a main  -> producción (cPanel del cliente)
+#  - manual       -> Actions > Deploy > Run workflow (elige staging o production)
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Entorno a desplegar"
+        type: choice
+        options: [production, staging]
+        default: staging
+
+concurrency:
+  group: deploy-${{ github.event.inputs.environment || 'production' }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'production' }}
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          tools: composer:v2
+          coverage: none
+
+      - name: Dependencias PHP (sin dev)
+        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction --no-progress
+
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Compilar assets (Vite)
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+
+      - name: Configurar SSH
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          cat > ~/.ssh/config <<EOF
+          Host deploy-target
+            HostName $SSH_HOST
+            Port $SSH_PORT
+            User ${{ secrets.SSH_USER }}
+            IdentityFile ~/.ssh/deploy_key
+            IdentitiesOnly yes
+            ServerAliveInterval 30
+          EOF
+
+      - name: Modo mantenimiento
+        env:
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          PHP_BIN: ${{ vars.PHP_BIN }}
+        # En el primer despliegue todavía no existe remote.sh: se omite sin error.
+        run: |
+          ssh deploy-target "mkdir -p '$DEPLOY_PATH' && cd '$DEPLOY_PATH' && \
+            if [ -f deploy/remote.sh ]; then PHP_BIN='$PHP_BIN' bash deploy/remote.sh down; fi"
+
+      - name: Subir archivos (rsync)
+        env:
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          rsync -az --delete \
+            --exclude='/.git/' \
+            --exclude='/.github/' \
+            --exclude='/node_modules/' \
+            --exclude='/tests/' \
+            --exclude='/.env' \
+            --exclude='/storage/' \
+            --exclude='/public/storage' \
+            --exclude='/bootstrap/cache/*.php' \
+            ./ "deploy-target:$DEPLOY_PATH/"
+
+      - name: Migraciones, caché y volver a línea
+        env:
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          PHP_BIN: ${{ vars.PHP_BIN }}
+        run: ssh deploy-target "PHP_BIN='$PHP_BIN' bash '$DEPLOY_PATH/deploy/remote.sh'"
+
+      - name: Comprobar que el sitio responde
+        if: ${{ vars.APP_URL != '' }}
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' -L "${{ vars.APP_URL }}")
+          echo "HTTP $code"
+          [ "$code" -lt 500 ]
